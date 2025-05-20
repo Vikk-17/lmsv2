@@ -3,7 +3,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 
-const mediaRoutes = require("./routes/instructor/media.routes")
+const mediaRoutes = require("./routes/instructor/media.routes");
+const instructorRoutes = require("./routes/instructor/course.routes");
 
 const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -29,6 +30,7 @@ conncetDB()
 
 // routes
 app.use("/media", mediaRoutes);
+app.use("/instructor/course", instructorRoutes);
 
 // global error catch
 app.use((err, req, res, next) => {
