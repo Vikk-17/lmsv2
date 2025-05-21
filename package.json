@@ -9,5 +9,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vikk-17/lmsv2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vikk-17/lmsv2/issues"
+  },
+  "homepage": "https://github.com/Vikk-17/lmsv2#readme",
+  "dependencies": {
+    "cloudinary": "^2.6.1",
+    "express": "^5.1.0",
+    "multer": "^2.0.0"
+  }
 }
