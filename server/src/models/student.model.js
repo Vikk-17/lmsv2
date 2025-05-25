@@ -1,23 +1,29 @@
-import {Schema, model} from 'mongoose';
+import { Schema, model } from "mongoose";
 
-
-const studentSchema = new Schema({
-    _id:{
-        type:Schema.Types.ObjectId,
-        ref:'User',
+const studentSchema = new Schema(
+  {
+    _id: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    enrolledCources:[{
-        type:Schema.Types.ObjectId,
-        ref:'Cource',
-    }],
-    dob:{
-        type:Date,
+    enrolledCourses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+      },
+    ],
+    dob: {
+      type: Date,
     },
-    wishList:[{
-        type:Schema.Types.ObjectId,
-        ref:'Cource',
-    }],
-});
+    wishList: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-const Student = model('Student', studentSchema);
+const Student = model("Student", studentSchema);
 export default Student;
