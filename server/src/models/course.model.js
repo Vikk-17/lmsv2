@@ -1,6 +1,28 @@
 // Importing Schema and model from mongoose to define the schema for the Course model
 import { Schema, model } from "mongoose";
 
+//Defining the schema structure for the particularly Course
+
+const lectureSchema = new Schema({
+  title: {
+    type: String,
+    trim: true,
+    required: true,
+    unique: true,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  public_id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  freePreview: Boolean,
+});
+
 // Defining the schema structure for the Course collection
 const courseSchema = new Schema(
   {
@@ -11,6 +33,13 @@ const courseSchema = new Schema(
       required: true,
       unique: true,
     },
+    //Image for the course- non-empty,trimmed String
+    image: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
     // Optional subtitle for the course - trimmed string
     subtitle: {
       type: String,
@@ -55,11 +84,16 @@ const courseSchema = new Schema(
       type: Number,
       default: 0,
     },
+    princing: Number,
+    objective: String,
+    curriculam: [lectureSchema],
+    isPublished: Boolean,
   },
   // Automatically adds createdAt and updatedAt timestamps to the document
   { timestamps: true }
 );
 
+/*For Now I am commenting it 
 // Middleware to clean up related modules and videos before deleting a course
 courseSchema.pre("findOneAndDelete", async function (next) {
   try {
@@ -80,6 +114,8 @@ courseSchema.pre("findOneAndDelete", async function (next) {
     next(error);
   }
 });
+
+*/
 
 // Creating the Course model based on the schema
 const Course = model("Course", courseSchema);

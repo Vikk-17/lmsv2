@@ -7,6 +7,8 @@ import courseRouter from "./src/routes/course.routes.js";
 import adminRouter from "./src/routes/admin.routes.js";
 import cookieParser from "cookie-parser";
 import { authenticate } from "./src/middlewares/auth.middleware.js";
+import cartRoutes from "./src/routes/cart.routes.js";
+import assigment from "./src/routes/assignment.routes.js";
 const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
@@ -31,6 +33,9 @@ app.use("/api", authRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);
+
+app.use("/api/cart", cartRoutes);
+app.use("/api/assignment", assigment);
 
 app.listen(PORT, () => {
   console.log(`server running: http://localhost:${PORT}/ `);

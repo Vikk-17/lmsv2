@@ -1,82 +1,83 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 // particular lecture
 const lectureSchema = new Schema({
-     title:{
-        type:String,
-        trim:true,
-        required:true,
-        unique:true,
-    }, 
-    videoUrl: {
-        type: String,
-        required: true,
-        unique: true,
-    }
-    public_id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    freePreview: Boolean,
+  title: {
+    type: String,
+    trim: true,
+    required: true,
+    unique: true,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  public_id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  freePreview: Boolean,
 });
 
-
 // collection of multiple lecture
-const courseSchema = new Schema({
-    title:{
-        type:String,
-        trim:true,
-        required:true,
-        unique:true,
-    }, 
+const courseSchema = new Schema(
+  {
+    title: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
     image: {
-        type: String, 
-        required: true,
-        trim: true,
-    }
-    subtitle:{
-        type:String,
-        trim:true,
+      type: String,
+      required: true,
+      trim: true,
     },
-    description:{
-        type:String,
-        trim:true,
+    subtitle: {
+      type: String,
+      trim: true,
     },
-    instructor:{
-        type:Schema.Types.ObjectId,
-        ref:'Instructor',
-        required:true,
+    description: {
+      type: String,
+      trim: true,
     },
-    module:[{
-        type:Schema.Types.ObjectId,
-        ref:'Module',
-    }],
-    tag:{
-        type:[String],
-        default:[],
+    instructor: {
+      type: Schema.Types.ObjectId,
+      ref: "Instructor",
+      required: true,
     },
-    category:{
-        type:String,
-        trim:true,
-        required:true,
+    module: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Module",
+      },
+    ],
+    tag: {
+      type: [String],
+      default: [],
     },
-    language:{
-        type:String,
-        required:true,
+    category: {
+      type: String,
+      trim: true,
+      required: true,
     },
-    progress:{
-        type:Number,
-        default:0,
+    language: {
+      type: String,
+      required: true,
+    },
+    progress: {
+      type: Number,
+      default: 0,
     },
     princing: Number,
     objective: String,
     curriculam: [lectureSchema],
     isPublished: Boolean,
-
-},{timestamps:true});
-
-
+  },
+  { timestamps: true }
+);
 
 //delete all related modules and videos after deletion of course
 // courseSchema.pre('findOneAndDelete', async function (next){
@@ -93,4 +94,4 @@ const courseSchema = new Schema({
 // });
 //
 
-module.exports = model('Course', courseSchema);
+module.exports = model("Course", courseSchema);
