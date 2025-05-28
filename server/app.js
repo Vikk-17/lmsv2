@@ -7,8 +7,10 @@ import courseRouter from "./src/routes/course.routes.js";
 import adminRouter from "./src/routes/admin.routes.js";
 import cookieParser from "cookie-parser";
 import { authenticate } from "./src/middlewares/auth.middleware.js";
-import cartRoutes from "./src/routes/cart.routes.js";
+import whishlistRoutes from "./src/routes/whishlist.routes.js";
 import assigment from "./src/routes/assignment.routes.js";
+import videoRoutes from "./src/routes/media.routes.js";
+import progress from "./src/routes/progress.routes.js";
 const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
@@ -20,23 +22,31 @@ app.use(cookieParser());
 dbConnect();
 
 app.get("/", (req, res) => {
-  res.send("hello world from sumit");
+  res.send("Empower Your Learning with Gir Technologies");
 });
 
-app.get("/cources", authenticate, (req, res) => {
+app.get("/courses", authenticate, (req, res) => {
   res
     .status(200)
-    .json({ message: "welcome to cources section", user: req.user });
+    .json({ message: "welcome to coures section", user: req.user });
 });
 
 app.use("/api", authRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);
-
-app.use("/api/cart", cartRoutes);
+//Cart/whishlist
+app.use("/api/whishlist", whishlistRoutes);
+//Assignment
 app.use("/api/assignment", assigment);
+//video Router
+app.use("/api/video", videoRoutes);
+//Progress Routes
+app.use("/api/progress", progress);
 
 app.listen(PORT, () => {
-  console.log(`server running: http://localhost:${PORT}/ `);
+  console.log(
+    `\x1b[45m\x1b[37m%s\x1b[0m`,
+    ` 🥳 Yuhu! Server is started at: http://localhost:${PORT}/ `
+  );
 });
