@@ -1,6 +1,8 @@
+import mongoose from "mongoose";
 import Course from "../models/course.model.js";
 import Assignment from "../models/assignment.model.js";
-
+import Student from "../models/student.model.js";
+import QuizAttempt from "../models/quizAttemt.model.js";
 export const createAssignment = async (req, res) => {
   try {
     const { courseId, title, description, questions, createdBy } = req.body;
@@ -9,7 +11,6 @@ export const createAssignment = async (req, res) => {
     if (!courseExists) {
       return res.status(404).json({ message: "Course not found" });
     }
-
     const newAssignment = new Assignment({
       course: courseId,
       title,
@@ -86,41 +87,73 @@ export const getAssignmentById = async (req, res) => {
 
 export const attendQuiz = async (req, res) => {
   try {
-    const { assignmentId, questionIndex, selectedAnswer } = req.body;
+    const { studentId, assignmentId, questionId, selectedAnswer } = req.body;
 
-    if (!assignmentId || questionIndex === undefined || !selectedAnswer) {
+    if (!studentId || !assignmentId || !questionId || !selectedAnswer) {
       return res.status(400).json({
         message:
-          "assignmentId, questionIndex, and selectedAnswer are required.",
+          "studentId, assignmentId, questionId, and selectedAnswer are required.",
       });
     }
 
-    const assignment = await Assignment.findById(assignmentId);
+    // Validate student
+    const student = await Student.findById(studentId);
+    if (!student) {
+      return res.status(404).json({ message: "Student not found." });
+    }
 
+    // Validate assignment
+    const assignment = await Assignment.findById(assignmentId);
     if (!assignment) {
       return res.status(404).json({ message: "Assignment not found." });
     }
 
-    const question = assignment.questions[questionIndex];
+    // Check if student already attended
+    const alreadyAttempted = await QuizAttempt.findOne({
+      student: studentId,
+      assignment: assignmentId,
+    });
 
-    if (!question) {
+    if (alreadyAttempted) {
       return res
-        .status(404)
-        .json({ message: "Question not found at given index." });
+        .status(400)
+        .json({ message: "You already attended assignment" });
+    }
+
+    // Get the question
+    const question = assignment.questions.id(questionId);
+    if (!question) {
+      return res.status(404).json({ message: "Question not found." });
     }
 
     const isCorrect = question.correctAnswer === selectedAnswer;
 
-    res.json({
+    // Save the attempt
+    const attempt = new QuizAttempt({
+      assignment: assignmentId,
+      student: studentId,
+      answers: [
+        {
+          questionId,
+          selectedAnswer,
+          correctAnswer: question.correctAnswer,
+          isCorrect,
+        },
+      ],
+    });
+
+    await attempt.save();
+
+    res.status(200).json({
+      message: "Answer submitted",
       question: question.questionText,
-      options: question.options,
       selectedAnswer,
       correctAnswer: question.correctAnswer,
       result: isCorrect ? "Correct" : "Wrong",
     });
   } catch (err) {
     res.status(500).json({
-      message: "Error while checking quiz answer",
+      message: "Error while processing quiz attempt",
       error: err.message,
     });
   }
