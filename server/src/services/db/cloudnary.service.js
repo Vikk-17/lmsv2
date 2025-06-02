@@ -2,7 +2,7 @@ const cloudinary = require("cloudinary").v2;
 const dotenv = require("dotenv");
 const path = require("path");
 dotenv.config({
-  path: path.resolve(__dirname, "../.env"),
+  path: path.resolve(__dirname, "../../../../.env"),
 });
 
 cloudinary.config({
@@ -15,8 +15,28 @@ const uploadMedia = async (filePath) => {
   try {
     const result = await cloudinary.uploader.upload(filePath, {
       resource_type: "auto",
+      eager: [
+          // 1080p transformation
+          transformation: [
+              {width: 1920, height: 1080, crop: "limit"},
+              {quality: "auto", fetch_format: "auto"}
+          ],
+          // 720p transformation
+          transformation: [
+              {width: 1280, height: 720, crop: "limit"},
+              {quality: "auto", fetch_format: "auto"}
+          ],
+
+          // 480p transformation
+          transformation: [
+              {width: 854, height: 480, crop: "limit"},
+              {quality: "auto", fetch_format: "auto"}
+          ],
+      ],
+      eager_async: true,
+      overwrite: false, // default for video
     });
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (err) {
     console.log(err);
