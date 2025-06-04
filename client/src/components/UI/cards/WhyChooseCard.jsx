@@ -3,13 +3,14 @@ import { MdDataExploration } from "react-icons/md";
 import Line from '../shapes/Line';
 function WhyChooseCard() {
   return (
-    <div className='bg-bg-card p-8 rounded-2xl flex flex-col gap-y-10'>
-        <MdDataExploration className='text-accent-100 text-6xl' />
-        <div className='mt-8'>
-          <h3 className='text-xl text-heading mb-4'>Accredited Curriculum </h3>
-          <p  className='opacity-80'>Our program curriculums are designed keeping in line with the Certification requirements. This ensures the trainings are on par with the current industry needs.</p>
-        </div>
-        <Line/>
+    <div className="flex flex-col gap-y-6 bg-[var(--clr-accent-100)] px-12 py-10 rounded-sm ">
+      <div className='w-8 h-10'>
+        <img className='w-full h-full object-contain' src="/icons/icon-list.svg" alt="" />
+      </div>
+      <div className='flex flex-col gap-y-4'>
+        <h5>Expert-Led Learning</h5>
+        <p className='text-[var(--clr-primary-400)] max-w-78'>At GIR Technologies, industry experts lead training, blending real-world cybersecurity and IT experience to ensure you gain practical, job-ready skills beyond theory.</p>
+      </div>
     </div>
   )
 }
