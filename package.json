@@ -1,13 +1,16 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "lmsv2",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Learning Management System (LMS) backend project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"No test configured\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["LMS", "express", "backend", "cloudinary", "multer"],
+  "author": "Sumit Devs",
   "license": "ISC",
   "type": "commonjs",
   "repository": {
@@ -22,5 +25,8 @@
     "cloudinary": "^2.6.1",
     "express": "^5.1.0",
     "multer": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }
