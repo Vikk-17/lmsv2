@@ -1,16 +1,17 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "server",
   "version": "1.0.0",
   "main": "app.js",
   "type": "module",
+  "description": "Backend server for LMS project",
+  "author": "Sumit Devs",
+  "keywords": ["LMS", "Node.js", "Express", "MongoDB", "JWT", "Zod"],
+  "license": "ISC",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.6.1",
@@ -22,5 +23,8 @@
     "multer": "^2.0.0",
     "nodemailer": "^7.0.3",
     "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }
