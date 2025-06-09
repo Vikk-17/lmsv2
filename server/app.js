@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from 'cors';
 import dbConnect from "./src/config/db.config.js";
 import authRouter from "./src/routes/auth.routes.js";
 import instructorRouter from "./src/routes/instructor.routes.js";
@@ -11,6 +12,7 @@ import whishlistRoutes from "./src/routes/whishlist.routes.js";
 import assigment from "./src/routes/assignment.routes.js";
 import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
+import { corsOptions } from "./src/config/cors.config.js";
 const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 dbConnect();
 
