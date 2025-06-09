@@ -6,14 +6,7 @@
   "type": "module",
   "description": "Backend server for LMS project",
   "author": "Sumit Devs",
-  "keywords": [
-    "LMS",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "JWT",
-    "Zod"
-  ],
+  "keywords": ["LMS", "Node.js", "Express", "MongoDB", "JWT", "Zod"],
   "license": "ISC",
   "scripts": {
     "start": "node app.js",
