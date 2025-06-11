@@ -9,12 +9,12 @@ import {
 } from "../controllers/course.controller.js";
 const router = express.Router();
 
-router.route("/").get(getAllCourses).post(createCourse);
-router.use("/:courseid/modules", moduleRoutes);
-router
-  .route("/:courseid")
+router.route("/")
+  .get(getAllCourses)
+  .post(createCourse);
+router.route("/:courseid")
   .get(getCourse)
   .put(updateCourse)
   .delete(deleteCourse);
-
+router.use("/:courseid/modules", moduleRoutes);
 export default router;
