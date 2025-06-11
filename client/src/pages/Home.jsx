@@ -30,7 +30,7 @@ function Home() {
       <div className='text-[var(--clr-primary-900)] flex flex-col gap-y-4 justify-center items-center h-50 bg-[var(--clr-accent-100)]'>
         <p>Trusted by leading organizations worldwide</p>
         <div className='flex w-1/2 gap-x-8'>
-          <svg class="h-8 ">
+          <svg className="h-8 ">
           <use href="/icons/brands.svg#Group2549"></use>
           </svg>
           <svg className="h-8 ">
