@@ -9,10 +9,9 @@ import {
 } from "../controllers/media.controller.js";
 
 const router = express.Router();
-const upload = multer({ dest: "uploads/" }); // basic multer config
 
 // Route to upload media
-router.post("/upload", upload.single("file"), uploadMedia);
+router.post("/upload", uploadMedia);
 
 // Route to delete media
 router.delete("/delete/:publicId", deleteMedia);

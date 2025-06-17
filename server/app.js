@@ -11,12 +11,14 @@ import whishlistRoutes from "./src/routes/whishlist.routes.js";
 import assigment from "./src/routes/assignment.routes.js";
 import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
+import expressFileUpload from "express-fileupload";
 
 const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
+app.use(expressFileUpload());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
