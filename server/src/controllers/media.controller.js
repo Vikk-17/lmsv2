@@ -23,17 +23,29 @@ cloudinary.config({
 // Upload media controller
 export const uploadMedia = async (req, res) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const file = req.files?.file;
+
+    if (!file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // Convert buffer to base64 string
+    const base64String = `data:${file.mimetype};base64,${file.data.toString(
+      "base64"
+    )}`;
+
+    const result = await cloudinary.uploader.upload(base64String, {
       resource_type: "auto",
     });
+
     res.status(200).json({
       message: "Media uploaded successfully",
       url: result.secure_url,
       public_id: result.public_id,
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Can't upload media" });
+    console.error("Cloudinary Upload Error:", err);
+    res.status(500).json({ error: "Upload failed" });
   }
 };
 
