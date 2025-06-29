@@ -6,17 +6,27 @@
   "type": "module",
   "description": "Backend server for LMS project",
   "author": "Sumit Devs",
-  "keywords": ["LMS", "Node.js", "Express", "MongoDB", "JWT", "Zod"],
+  "keywords": [
+    "LMS",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "JWT",
+    "Zod"
+  ],
   "license": "ISC",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.3",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.6.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
+    "esbuild": "^0.25.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
