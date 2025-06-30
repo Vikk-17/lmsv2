@@ -7,7 +7,7 @@ function Courses() {
   useEffect(()=>{
     const fetchCourses = async () => {
       try{
-        const {data} = await axiosClient.get('/api/courses');
+        const {data} = await axiosClient.get('/courses');
         console.log(data);
       } catch(error){
         console.log(error);

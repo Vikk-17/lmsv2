@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from 'cors';
 import dbConnect from "./src/config/db.config.js";
 import authRouter from "./src/routes/auth.routes.js";
+import userRouter from "./src/routes/user.routes.js"
 import instructorRouter from "./src/routes/instructor.routes.js";
 import courseRouter from "./src/routes/course.routes.js";
 import adminRouter from "./src/routes/admin.routes.js";
@@ -35,6 +36,7 @@ app.get("/courses", authenticate, (req, res) => {
 });
 
 app.use("/api", authRouter);
+app.use("/api/user", userRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);

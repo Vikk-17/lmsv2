@@ -1,6 +1,16 @@
-import React from 'react'
-
+import {useState} from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { Toaster } from 'react-hot-toast';
 function Signup() {
+  const {signup,loading,error} =useAuth();
+  const [name,setName] =useState();
+  const [email,setEmail] =useState();
+  const [password,setPassword] =useState();
+  const [confirmPassword,setConfirmPassword] =useState();
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    signup({name,email,password,confirmPassword})
+  }
   return (
     <>
       <section id="breadcrumb" className='h-14 bg-[var(--clr-accent-100)]'>
@@ -20,11 +30,11 @@ function Signup() {
                 <h2>Create Your  Account</h2>
                 <p className='text-[var(--clr-primary-400)]'>Join GIR Technologies  and start learning today.</p>
               </div>
-              <form action="" className='flex flex-col gap-y-4'>
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="text" placeholder='Full Name' />
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email' />
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password' />
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='confirmpassword' type="password" placeholder='Confirm Password' />
+              <form onSubmit={handleSubmit} className='flex flex-col gap-y-4'>
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='name' type="text" placeholder='Full Name' onChange={(e)=>setName(e.target.value)} />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email'  onChange={(e) => setEmail(e.target.value)}  />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password'  onChange={(e) => setPassword(e.target.value)} />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='confirmpassword' type="password" placeholder='Confirm Password'  onChange={(e) => setConfirmPassword(e.target.value)} />
                 <div className='flex justify-between items-center'>
                   <label>
                     <input type="checkbox" name="remember" />
@@ -33,6 +43,7 @@ function Signup() {
                   <a className='text-[var(--clr-accent-900)]' href="#">Forget Password?</a>
                 </div>
                 <input className='h-12 rounded-lg text-white px-4 bg-[var(--clr-accent-900)]' type="submit" value="Login" />
+                {error && <p>{error}</p>}
               </form>
               <div className='flex items-center gap-x-1 text-[var(--clr-primary-400)] justify-between'>
                 <hr className='border-t flex-grow border-[var(--clr-primary-200)]' />
@@ -47,6 +58,7 @@ function Signup() {
           </div>
         </div>
       </section>
+      <Toaster position='bottom-left' />
     </>
   )
 }

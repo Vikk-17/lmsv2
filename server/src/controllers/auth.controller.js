@@ -32,6 +32,7 @@ export const login = async (req,res)=>{
         }
         const token = await signAccessToken({ userId: user._id, name: user.name, email: user.email,role:user.role});
         res.cookie('token',token,{httpOnly:true, maxAge: 1 * 60 * 1000 });
+        console.log(user);
         res.status(200).json({message:'login successful',token:token});
     }catch(error){
         res.status(500).json({message:'internal error'});
