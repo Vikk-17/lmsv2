@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import logo from '../../assets/gir-logo.svg'
 
 function Footer() {
   return (
@@ -8,7 +9,7 @@ function Footer() {
             <div className="container">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-27">
                     <section id='company' className="flex flex-col gap-y-2 sm:gap-y-4  ">
-                        <h2 className=' text-neutral-100 text-heading-h5 font-bold ' href="/">LOGO</h2>
+                        <h2 className=' text-neutral-100 text-heading-h5 font-bold ' href="/"><img src={logo} alt="" /></h2>
                         <p>GIR Technologies secures digital assets and empowers learners with expert-led cybersecurity training for students, professionals, and institutions.</p>
                     </section>
                     <section id='product' className="flex flex-col gap-y-2 sm:gap-y-4  ">

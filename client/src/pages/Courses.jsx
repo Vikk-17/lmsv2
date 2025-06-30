@@ -1,7 +1,20 @@
-import React from 'react'
-import CourseCard from '../components/UI/cards/CourseCard'
+import {useEffect,useState} from 'react';
+import CourseCard from '../components/UI/cards/CourseCard';
+import { axiosClient } from '../api/axiosClient';
 
 function Courses() {
+  const [courses, setCourses] = useState([]);
+  useEffect(()=>{
+    const fetchCourses = async () => {
+      try{
+        const {data} = await axiosClient.get('/courses');
+        console.log(data);
+      } catch(error){
+        console.log(error);
+      }
+    }
+    fetchCourses();
+  },[])
   return (
     <>
       <section id="breadcrumb" className='h-14 bg-[var(--clr-accent-100)]'>

@@ -1,6 +1,15 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
+import { Toaster } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
 
 function Login() {
+  const login = useAuthStore((state) => state.login);
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const handleSubmit =  (e)=>{
+    e.preventDefault();
+    login({email,password});
+  }
   return (
     <>
       <section id="breadcrumb" className='h-14 bg-[var(--clr-accent-100)]'>
@@ -20,9 +29,9 @@ function Login() {
                 <h2>Welcome Back</h2>
                 <p className='text-[var(--clr-primary-400)]'>Your learning journey starts here.</p>
               </div>
-              <form action="" className='flex flex-col gap-y-4'>
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email' />
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password' />
+              <form onSubmit={handleSubmit} className='flex flex-col gap-y-4'>
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password'  onChange={(e) => setPassword(e.target.value)} />
                 <div className='flex justify-between items-center'>
                   <label>
                     <input type="checkbox" name="remember" />
@@ -45,6 +54,7 @@ function Login() {
           </div>
         </div>
       </section>
+      <Toaster position='bottom-left' />
     </>
   )
 }

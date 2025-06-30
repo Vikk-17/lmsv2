@@ -8,6 +8,7 @@
   --clr-primary-100:#CECFD2;
   --clr-accent-900:#455CE9;
   --clr-accent-400:#ADB7F6;
+  --clr-accent-200:#E8EBFC;
   --clr-accent-100:#F2F4FF;
   --clr-neutral-100:#FFFFFF;
 
@@ -21,8 +22,6 @@
   --text-heading-h5:1.438rem;
   --text-heading-h6:1.188rem;
   --text-tag:0.812rem;
-  --text-sm:0.688rem;
-
 }
 
 @layer base{
@@ -39,6 +38,9 @@
     font-family: var(--font-heading);
     font-weight: 600;
     color: var(--clr-primary-900);
+  }
+  p{
+    @apply mt-0.5 mb-2;
   }
   h1{
     @apply text-heading-h1

@@ -1,7 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from 'cors';
 import dbConnect from "./src/config/db.config.js";
 import authRouter from "./src/routes/auth.routes.js";
+import userRouter from "./src/routes/user.routes.js"
 import instructorRouter from "./src/routes/instructor.routes.js";
 import courseRouter from "./src/routes/course.routes.js";
 import adminRouter from "./src/routes/admin.routes.js";
@@ -13,6 +15,7 @@ import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
 import expressFileUpload from "express-fileupload";
 
+import { corsOptions } from "./src/config/cors.config.js";
 const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
@@ -21,6 +24,7 @@ app.use(express.json());
 app.use(expressFileUpload());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 dbConnect();
 
@@ -35,6 +39,7 @@ app.get("/courses", authenticate, (req, res) => {
 });
 
 app.use("/api", authRouter);
+app.use("/api/user", userRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);
