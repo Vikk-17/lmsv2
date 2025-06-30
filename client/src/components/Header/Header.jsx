@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import {useEffect} from 'react';
->>>>>>> feature/backend-integration
 import logo from '../../assets/gir-logo.svg'
 import { Link } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
@@ -16,11 +12,7 @@ function Header () {
     <header className='bg-[var(--clr-primary-900)]' >
       <div className="container">
         <div className="nav-wrapper h-20 flex justify-between items-center">
-<<<<<<< HEAD
-          <a className='text-heading-h5 font-bold w-1/4' href="/"><img src={logo} alt="" /></a>
-=======
           <Link className='text-heading-h5 font-bold w-1/4' to="/"><img src={logo} alt="" /></Link>
->>>>>>> feature/backend-integration
           <nav className='hidden md:flex justify-between w-3/4' role='navigation' aria-label='primary navigation'>
             <ul role='list' className='flex gap-x-12 font-medium items-center' >
               <li><Link  to="/">Home</Link></li>
