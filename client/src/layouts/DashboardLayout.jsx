@@ -1,6 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+<<<<<<< HEAD
 import Sidebar from '../components/UI/components/SIdebar';
+=======
+import Sidebar from '../components/UI/components/Sidebar';
+>>>>>>> feature/backend-integration
 
 function DashboardLayout() {
   return (

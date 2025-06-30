@@ -7,7 +7,11 @@ function Courses() {
   useEffect(()=>{
     const fetchCourses = async () => {
       try{
+<<<<<<< HEAD
         const {data} = await axiosClient.get('/api/courses');
+=======
+        const {data} = await axiosClient.get('/courses');
+>>>>>>> feature/backend-integration
         console.log(data);
       } catch(error){
         console.log(error);

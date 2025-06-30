@@ -9,7 +9,11 @@ export const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+<<<<<<< HEAD
   credentials: true, // ✅ must be lowercase
+=======
+  credentials: true,
+>>>>>>> feature/backend-integration
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };

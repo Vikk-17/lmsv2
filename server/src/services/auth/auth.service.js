@@ -13,5 +13,5 @@ export const signAccessToken = async (payload) =>{
 }
 
 export const verifyAccessToken = async (token) =>{
-    return jwt.verify(token,process.env.JWT_SECRET);
+    return jwt.verify(token, process.env.JWT_SECRET);
 }
