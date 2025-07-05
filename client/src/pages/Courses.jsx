@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react';
 import CourseCard from '../components/UI/cards/CourseCard';
 import { axiosClient } from '../api/axiosClient';
-
+import { Toaster } from 'react-hot-toast';
 function Courses() {
   const [courses, setCourses] = useState([]);
   useEffect(()=>{
@@ -70,6 +70,7 @@ function Courses() {
           </ul>
         </nav>
       </section>
+      <Toaster position='bottom-left' />
     </>
   )
 }

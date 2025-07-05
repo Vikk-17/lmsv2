@@ -1,14 +1,26 @@
 import {useState, useEffect} from 'react'
-import { Toaster } from 'react-hot-toast';
+import {toast, Toaster } from 'react-hot-toast';
 import useAuthStore from '../store/authStore';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
+  const {login, isAuthenticated} = useAuthStore();
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-  const handleSubmit =  (e)=>{
+  useEffect(()=>{
+    if(isAuthenticated)
+      navigate('/');
+  },[isAuthenticated])
+  const handleSubmit = async (e)=>{
     e.preventDefault();
-    login({email,password});
+    const {success,error} = await login({email,password});
+    if(success){
+      navigate('/courses');
+      toast.success('login success',{position: 'bottom-left'});
+    } else {
+      toast.error(error,{ position:"bottom-left" });
+    }
   }
   return (
     <>
@@ -54,7 +66,7 @@ function Login() {
           </div>
         </div>
       </section>
-      <Toaster position='bottom-left' />
+      <Toaster/>
     </>
   )
 }
