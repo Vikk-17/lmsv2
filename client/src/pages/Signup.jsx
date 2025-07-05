@@ -1,15 +1,23 @@
 import {useState} from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
+import { useNavigate } from 'react-router-dom';
 function Signup() {
-  const {signup,loading,error} =useAuth();
+  const {signup} = useAuthStore();
   const [name,setName] =useState();
   const [email,setEmail] =useState();
   const [password,setPassword] =useState();
   const [confirmPassword,setConfirmPassword] =useState();
-  const handleSubmit =(e)=>{
+  const navigate = useNavigate();
+  const handleSubmit = async (e)=>{
     e.preventDefault();
-    signup({name,email,password,confirmPassword})
+    const {success, error} = await signup({name,email,password,confirmPassword});
+    if(success){
+      navigate('/login');
+      toast.success('register successfully');
+    }else{
+      toast.error(error,{ position:"bottom-left" });
+    }
   }
   return (
     <>
@@ -43,7 +51,6 @@ function Signup() {
                   <a className='text-[var(--clr-accent-900)]' href="#">Forget Password?</a>
                 </div>
                 <input className='h-12 rounded-lg text-white px-4 bg-[var(--clr-accent-900)]' type="submit" value="Login" />
-                {error && <p>{error}</p>}
               </form>
               <div className='flex items-center gap-x-1 text-[var(--clr-primary-400)] justify-between'>
                 <hr className='border-t flex-grow border-[var(--clr-primary-200)]' />
