@@ -43,7 +43,7 @@ export const login = async (req, res) => {
       email: user.email,
       role: user.role,
     });
-    res.cookie("token", token, { httpOnly: true, maxAge: 1 * 60 * 1000 });
+    res.cookie("token", token, { httpOnly: true,secure: true, sameSite: 'None', maxAge: 1 * 60 * 1000 });
     res.status(200).json({ message: "login successful", token: token });
   } catch (error) {
     res.status(500).json({ message: "internal error" });
