@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 import logo from '../../assets/gir-logo.svg'
 import { Link } from 'react-router-dom';
-import { useUser } from '../../hooks/useUser';
+import useAuthStore from '../../store/authStore';
 function Header () {
-  const {user,fetchUser,error,loading} = useUser();
+  const {user,isAuthenticated, cookieLogin} = useAuthStore();
   useEffect(()=>{
-    fetchUser();
+    cookieLogin();
   },[]);
 
   return (
@@ -20,7 +20,7 @@ function Header () {
               <li><Link  to="services">Services</Link></li>
               <li><Link  to="about-us">About Us</Link></li>
             </ul>
-          {error!==null
+          {!isAuthenticated
             ? <ul role='list' className='flex gap-x-7 items-center'>
               <li>
                 <Link  to="login" className='flex items-center gap-x-2'>

@@ -1,30 +1,76 @@
 import { create } from "zustand";
-import {persist} from "zustand/middleware";
-import { loginUser } from "../api/auth";
-
-const useAuthStore = create(persist((set)=>({
-    user: null,
-    isAuthenticated:false,
-    loading:false,
-    error:null,
-    login: async (credentials)=>{
+import { persist } from "zustand/middleware";
+import { loginUser,registerUser } from "../api/auth";
+import { getUser } from "../api/user";
+import toast from "react-hot-toast";
+const useAuthStore = create(
+  persist(
+    (set) => ({
+      user: null,
+      isAuthenticated: false,
+      loading: false,
+      error: 'first',
+      login: async (credentials) => {
+        set({ loading: true, error: null });
+        try {
+          const res = await loginUser(credentials);
+          set({
+            user: res.data,
+            isAuthenticated: true,
+            loading: false,
+          });
+          return {success:true,error:null}
+        } catch (err) {
+          set({ error: err.response.data.errors || err.response.data.message, loading: false });
+          return {success:false,error:err.response.data.errors || err.response.data.message};
+        }
+      },
+      cookieLogin: async ()=>{
+        set({ loading: true, error: null });
+        try {
+            const res = await getUser();
+            set({
+            user: res.data,
+            isAuthenticated: true,
+            loading: false,
+          });
+        } catch(err) {
+            set({ error: err.message, loading: false,isAuthenticated:false});
+        }
+      },
+      signup: async (userdata)=>{
         set({loading:true,error:null});
         try{
-            const res = await loginUser(credentials);
-            set({user:res.data,isAuthenticated:true,loading:false});
-            console.log('user login');
-        }catch(err){
-            set({error:err.message,loading: false});
+          const res = await registerUser(userdata);
+          set({loading:false})
+          return {success:true, error:null}
+        } catch(err){
+          set({ error: err.response.data.errors || err.response.data.message, loading: false });
+          return {success:false, error:err.response.data.errors || err.response.data.message};
         }
-    },
+      }
     }),
     {
-        name: 'auth-storage',
-        partialize: (state) => ({
+      name: "auth-storage",
+      storage: {
+        getItem: (name) => {
+          const value = sessionStorage.getItem(name);
+          return value ? JSON.parse(value) : null;
+        },
+        setItem: (name, value) => {
+          sessionStorage.setItem(name, JSON.stringify(value));
+        },
+        removeItem: (name) => {
+          sessionStorage.removeItem(name);
+        },
+      },
+      // optional: use this to persist only selected fields
+      partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),
     }
-));
+  )
+);
 
 export default useAuthStore;
