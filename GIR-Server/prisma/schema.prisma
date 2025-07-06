@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  name        String
+  email       String  @unique
+  password    String?
+  role        Role
+  profile     String?
+  phoneNumber String?
+
+  street  String?
+  city    String?
+  state   String?
+  pincode String?
+  country String?
+
+  bio       String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student        Student?
+  instructor     Instructor?
+  admin          Admin?
+  QuizAttempt    QuizAttempt[]
+  courseProgress CourseProgress[]
+}
+
+model Student {
+  userId Int  @id
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  enrolledCourses Course[] @relation("EnrolledCourses")
+  wishList        Course[] @relation("WishList")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Instructor {
+  id         Int          @id @default(autoincrement())
+  userId     Int          @unique
+  user       User         @relation(fields: [userId], references: [id])
+  courses    Course[]     @relation("InstructorCourses")
+  Assignment Assignment[]
+}
+
+model Admin {
+  userId Int  @id
+  user   User @relation(fields: [userId], references: [id])
+  // admin-specific fields
+}
+
+enum Role {
+  student
+  admin
+  instructor
+}
+
+model OtpSender {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  otp       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model instructorApply {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phoneNumber String   @unique
+  email       String   @unique
+  address     String   @default("")
+  submit      Boolean  @default(true)
+  approved    Boolean  @default(false)
+  rejected    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+//Course 
+model Course {
+  id          Int     @id @default(autoincrement())
+  title       String  @unique
+  image       String
+  subtitle    String?
+  description String?
+
+  instructorId Int
+  instructor   Instructor @relation("InstructorCourses", fields: [instructorId], references: [id])
+  enrolledBy   Student[]  @relation("EnrolledCourses")
+  wishedBy     Student[]  @relation("WishList")
+
+  tag         String[] @default([])
+  category    String
+  language    String
+  progress    Int      @default(0)
+  pricing     Float?
+  objective   String?
+  isPublished Boolean? @default(false)
+
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  modules        Module[]
+  Assignment     Assignment[]
+  CourseProgress CourseProgress[]
+  Lecture        Lecture[]
+}
+
+model Module {
+  id    String @id @default(uuid())
+  title String @unique
+  order Int    @default(1)
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
+
+  // videos    Video[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Video     Video[]
+}
+
+model Assignment {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
+
+  createdById Int
+  instructor  Instructor @relation(fields: [createdById], references: [id])
+
+  questions    Question[]
+  quizAttempts QuizAttempt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuizAttempt {
+  id           String     @id @default(uuid())
+  assignmentId String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+
+  studentId Int
+  student   User @relation(fields: [studentId], references: [id])
+
+  answers   Answer[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Question {
+  id            String   @id @default(uuid())
+  questionText  String
+  options       String[]
+  correctAnswer String
+
+  assignmentId String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+
+  answers Answer[] // 💡 Add this for back-reference from Answer
+}
+
+model Answer {
+  id         String   @id @default(uuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id]) // ✅ Add this
+
+  selectedAnswer String
+  correctAnswer  String
+  isCorrect      Boolean
+
+  quizAttemptId String
+  quizAttempt   QuizAttempt @relation(fields: [quizAttemptId], references: [id])
+}
+
+model CourseProgress {
+  id             Int       @id @default(autoincrement())
+  userId         Int
+  courseId       Int
+  completed      Boolean   @default(false)
+  completionDate DateTime?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  lectureProgress LectureProgress[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model Lecture {
+  id          String   @id @default(uuid())
+  title       String   @unique
+  videoUrl    String   @unique
+  public_id   String   @unique
+  freePreview Boolean? @default(false)
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
+
+  lectureProgress LectureProgress[]
+}
+
+model LectureProgress {
+  id               Int     @id @default(autoincrement())
+  courseProgressId Int
+  lectureId        String
+  viewed           Boolean @default(false)
+
+  courseProgress CourseProgress @relation(fields: [courseProgressId], references: [id], onDelete: Cascade)
+  lecture        Lecture        @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+}
+
+model Video {
+  id          String  @id @default(uuid())
+  title       String  @unique
+  description String?
+  url         String
+  duration    Float?
+  order       Int     @default(1)
+  progress    Int     @default(0)
+
+  moduleId String?
+  module   Module? @relation(fields: [moduleId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
