@@ -14,6 +14,7 @@ import assigment from "./src/routes/assignment.routes.js";
 import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
 import expressFileUpload from "express-fileupload";
+import categoryRoute from "./src/routes/category.routes.js";
 
 import { corsOptions } from "./src/config/cors.config.js";
 const app = express();
@@ -43,6 +44,7 @@ app.use("/api/user", userRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);
+app.use("/api/category",categoryRoute);
 //Cart/whishlist
 app.use("/api/whishlist", whishlistRoutes);
 //Assignment

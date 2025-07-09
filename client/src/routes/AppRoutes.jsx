@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,Router } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import DashboardLayout from '../layouts/DashboardLayout';
 import Home from '../pages/Home';
@@ -13,21 +13,21 @@ import MyCourses from '../pages/MyCourses';
 import Watch from '../pages/Watch';
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<Home />} />
-        <Route path="courses" element={<Courses/>} />
-        <Route path="login"  element={<Login/>} />
-        <Route path='signup' element={<Signup/>}/>
-        <Route path='services' element={<Services/>}/>
-        <Route path='about-us' element={<AboutUs/>}/>
-        <Route path='course-details' element={<CourseDetails/>}/>
-      </Route>
-      <Route element={<DashboardLayout/>} >
-        <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/my-courses' element={<MyCourses/>}/>
-        <Route path='/watch' element={<Watch/>}/>
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="courses" element={<Courses/>} />
+          <Route path="login"  element={<Login/>} />
+          <Route path='signup' element={<Signup/>}/>
+          <Route path='services' element={<Services/>}/>
+          <Route path='about-us' element={<AboutUs/>}/>
+          <Route path='courses/:courseID' element={<CourseDetails/>}/>
+        </Route>
+        <Route element={<DashboardLayout/>} >
+          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/my-courses' element={<MyCourses/>}/>
+          <Route path='/watch' element={<Watch/>}/>
+        </Route>
+      </Routes>
   );
 }

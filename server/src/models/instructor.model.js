@@ -1,7 +1,7 @@
 import {Schema,model} from 'mongoose';
 
 const instructorSchema = new Schema({
-    _id:{
+    user:{
         type:Schema.Types.ObjectId,
         ref:'User',
     },
@@ -26,7 +26,7 @@ const instructorSchema = new Schema({
       },
     courcesUploaded:[{
         type:Schema.Types.ObjectId,
-        ref:'Cource',
+        ref:'Course',
       }],
     isVerified:{
         type:Boolean,

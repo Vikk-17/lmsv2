@@ -13,9 +13,9 @@ const useAuthStore = create(
       login: async (credentials) => {
         set({ loading: true, error: null });
         try {
-          const res = await loginUser(credentials);
+          const data = await loginUser(credentials);
           set({
-            user: res.data,
+            user: data,
             isAuthenticated: true,
             loading: false,
           });
@@ -28,9 +28,9 @@ const useAuthStore = create(
       cookieLogin: async ()=>{
         set({ loading: true, error: null });
         try {
-            const res = await getUser();
-            set({
-            user: res.data,
+            const data = await getUser();
+            data && set({
+            user: data,
             isAuthenticated: true,
             loading: false,
           });
@@ -41,7 +41,7 @@ const useAuthStore = create(
       signup: async (userdata)=>{
         set({loading:true,error:null});
         try{
-          const res = await registerUser(userdata);
+          const data = await registerUser(userdata);
           set({loading:false})
           return {success:true, error:null}
         } catch(err){

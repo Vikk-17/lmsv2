@@ -1,20 +1,25 @@
-import {useEffect,useState} from 'react';
 import CourseCard from '../components/UI/cards/CourseCard';
-import { axiosClient } from '../api/axiosClient';
 import { Toaster } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import { fetchCourses,fetchCategory } from '../api/courses';
 function Courses() {
-  const [courses, setCourses] = useState([]);
-  useEffect(()=>{
-    const fetchCourses = async () => {
-      try{
-        const {data} = await axiosClient.get('/courses');
-        console.log(data);
-      } catch(error){
-        console.log(error);
-      }
-    }
-    fetchCourses();
-  },[])
+  const {
+    data:courses,
+    isLoading,
+    isError
+  } =  useQuery({
+    queryKey:['courses'],
+    queryFn: fetchCourses,
+    staleTime:1000*60*5,
+  });
+  const {
+    data:category,
+  } =  useQuery({
+    queryKey:['courses'],
+    queryFn: fetchCategory,
+    staleTime:1000*60*5,
+  });
+  
   return (
     <>
       <section id="breadcrumb" className='h-14 bg-[var(--clr-accent-100)]'>
@@ -48,12 +53,10 @@ function Courses() {
       <section id="courses" className='mt-24'>
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
-            <CourseCard/>
+            {console.log(courses)}
+            { !isLoading && courses.map(course =>(
+              <CourseCard key={course._id} {...course} />
+            ))}
           </div>
         </div>
       </section>

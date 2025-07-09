@@ -70,9 +70,8 @@ const courseSchema = new Schema(
     },
     // Course category - required, trimmed string
     category: {
-      type: String,
-      trim: true,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref:"Category"
     },
     // Language in which the course is offered - required string
     language: {
