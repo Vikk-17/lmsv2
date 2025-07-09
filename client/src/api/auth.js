@@ -1,9 +1,11 @@
 import { axiosClient } from "./axiosClient";
 
-export const loginUser = (credentials)=>{
-    return axiosClient.post('/login',credentials);
+export const loginUser = async (credentials)=>{
+    const res = await axiosClient.post('/login',credentials);
+    return res.data;
 };
 
-export const registerUser = (userData)=>{
-    return axiosClient.post('/register', userData);
+export const registerUser = async (userData)=>{
+    const res = await axiosClient.post('/register', userData);
+    return res.data;
 }

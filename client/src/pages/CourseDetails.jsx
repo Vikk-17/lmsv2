@@ -36,31 +36,31 @@ function CourseDetails() {
                             <div className='flex gap-x-6 mt-8'>
                                 <span className='flex text-[var(--clr-primary-100)] gap-x-2 items-center justify-center'>
                                     <svg className="h-4 w-4">
-                                        <use href="./icons/detailsicon.svg#ic1"></use>
+                                        <use href="../icons/detailsicon.svg#ic1"></use>
                                     </svg>
                                     2 Weeks
                                 </span>
                                 <span className='flex text-[var(--clr-primary-100)] gap-x-2 items-center justify-center'>
                                     <svg className="h-4 w-4">
-                                        <use href="./icons/detailsicon.svg#ic2"></use>
+                                        <use href="../icons/detailsicon.svg#ic2"></use>
                                     </svg>
                                     156 Students
                                 </span>
                                 <span className='flex text-[var(--clr-primary-100)] gap-x-2 items-center justify-center'>
                                     <svg className="h-4 w-4">
-                                        <use href="./icons/detailsicon.svg#ic3"></use>
+                                        <use href="../icons/detailsicon.svg#ic3"></use>
                                     </svg>
                                     All levels
                                 </span>
                                 <span className='flex text-[var(--clr-primary-100)] gap-x-2 items-center justify-center'>
                                     <svg className="h-4 w-4">
-                                        <use href="./icons/detailsicon.svg#ic4"></use>
+                                        <use href="../icons/detailsicon.svg#ic4"></use>
                                     </svg>
                                     20 Lessons
                                 </span>
                                 <span className='flex text-[var(--clr-primary-100)] gap-x-2 items-center justify-center'>
                                     <svg className="h-4 w-4">
-                                        <use href="./icons/detailsicon.svg#ic5"></use>
+                                        <use href="../icons/detailsicon.svg#ic5"></use>
                                     </svg>
                                    3 Quizzes
                                 </span>
@@ -69,7 +69,7 @@ function CourseDetails() {
                         <div className='flex-1/3 relative'>
                             <div className='rounded-2xl right-0 absolute flex flex-col w-fit p-1  bg-[var(--clr-accent-100)]'>
                                 <div className='max-w-[26rem] rounded-t-2xl overflow-hidden'>
-                                    <img className='w-full h-full object-cover' src="./images/img1.jpg" alt="" />
+                                    <img className='w-full h-full object-cover' src="../images/img1.jpg" alt="" />
                                 </div>
                                 <div className='px-4 mt-6 pb-10 flex flex-col gap-y-6'>
                                     <div className='flex items-center justify-between'>
@@ -79,7 +79,7 @@ function CourseDetails() {
                                         </div>
                                         <a href='#' className='w-10 h-9 rounded-sm flex items-center justify-center bg-white overflow-hidden'>
                                             <svg className=" w-6 h-6 ">
-                                                <use href="./icons/detailsicon.svg#ic6"></use>
+                                                <use href="../icons/detailsicon.svg#ic6"></use>
                                             </svg>
                                         </a>
                                     </div>
@@ -88,7 +88,7 @@ function CourseDetails() {
                                         <button className='flex gap-x-2 rounded-lg cursor-pointer text-black items-center justify-center px-5 py-4 border border-[var(--clr-accent-900)]'>
                                             +
                                             <svg className=" w-6 h-6 ">
-                                                <use href="./icons/detailsicon.svg#ic7"></use>
+                                                <use href="../icons/detailsicon.svg#ic7"></use>
                                             </svg>
                                         </button>
                                     </div>
@@ -265,19 +265,19 @@ function CourseDetails() {
                                     <div>
                                         <span className='flex gap-x-1'>
                                             <svg className="h-4 w-4">
-                                                <use href="./icons/detailsicon.svg#ic8"></use>
+                                                <use href="../icons/detailsicon.svg#ic8"></use>
                                             </svg>
                                             <svg className="h-4 w-4">
-                                                <use href="./icons/detailsicon.svg#ic8"></use>
+                                                <use href="../icons/detailsicon.svg#ic8"></use>
                                             </svg>
                                             <svg className="h-4 w-4">
-                                                <use href="./icons/detailsicon.svg#ic8"></use>
+                                                <use href="../icons/detailsicon.svg#ic8"></use>
                                             </svg>
                                             <svg className="h-4 w-4">
-                                                <use href="./icons/detailsicon.svg#ic8"></use>
+                                                <use href="../icons/detailsicon.svg#ic8"></use>
                                             </svg>
                                             <svg className="h-4 w-4 ">
-                                                <use href="./icons/detailsicon.svg#ic11"></use>
+                                                <use href="../icons/detailsicon.svg#ic11"></use>
                                             </svg>
                                         </span>
                                         <p>based on 146,951 ratings</p>

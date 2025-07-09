@@ -1,5 +1,8 @@
 // Remove trailing slash from origin URL
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://lmsv2-git-main-sumitdevs-projects.vercel.app'
+];
 
 export const corsOptions = {
   origin: function (origin, callback) {

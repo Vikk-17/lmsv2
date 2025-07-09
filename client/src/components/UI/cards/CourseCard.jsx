@@ -1,6 +1,6 @@
 import React from 'react'
-
-function CourseCard() {
+import { Link } from 'react-router-dom'
+function CourseCard({title,princing,instructor,_id}) {
   return (
     <div className="flex flex-col">
         <div className='relative '>
@@ -18,9 +18,9 @@ function CourseCard() {
                 <div className='h-10 w-10 overflow-hidden rounded-full '>
                 <img className=' h-full w-full object-cover ' src="/images/prof1.jpg" alt="" />
                 </div>
-                <p className='text-[var(--clr-primary-400)]'>sumitDevs</p>
+                <p className='text-[var(--clr-primary-400)]'>{instructor?.user?.name}</p>
             </div>
-            <h5>Cybersecurity Fundamentals Defend and Detect</h5>
+            <h5>{title}</h5>
             <div className='flex justify-between gap-y-2'>
                 <span className='flex items-center gap-x-2'>
                 <svg className="icon w-6 h-6">
@@ -43,8 +43,8 @@ function CourseCard() {
             </div>
             </div>
             <div className='flex font-medium justify-between text-[1.18rem] mt-8'>
-            <p className='text-[var(--clr-primary-100)]'> <span className='line-through'>₹3,000</span>&nbsp;<span className='text-green-500'>Free</span></p>
-            <a href="#" className='text-[var(--clr-accent-900)]' >View More</a>
+            <p className='text-[var(--clr-primary-100)]'> <span className='line-through'>${Math.round(princing)}</span>&nbsp;<span className='text-green-500'>Free</span></p>
+            <Link to={`/courses/${_id}`} className='text-[var(--clr-accent-900)]' >View More</Link>
             </div>
         </div>
     </div>
