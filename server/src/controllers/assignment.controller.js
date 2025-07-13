@@ -3,6 +3,7 @@ import Course from "../models/course.model.js";
 import Assignment from "../models/assignment.model.js";
 import Student from "../models/student.model.js";
 import QuizAttempt from "../models/quizAttemt.model.js";
+
 export const createAssignment = async (req, res) => {
   try {
     const { courseId, title, description, questions, createdBy } = req.body;
@@ -30,6 +31,51 @@ export const createAssignment = async (req, res) => {
       .json({ message: "Error creating assignment", error: err.message });
   }
 };
+
+export const updateAssignmentByCourse = async (req, res) => {
+  try {
+    const { courseId, assignmentId } = req.params;
+    const { title, description } = req.body;
+
+    if (!courseId || !assignmentId) {
+      return res.status(400).json({ message: "Invalid Parameters" });
+    }
+    if (!title && !description) {
+      return res.status(400).json({ message: "Enter required fields" });
+    }
+    const isCourseExist = await Course.findById(courseId);
+    if (!isCourseExist) {
+      return res.status(404).json({ message: "No course found with this id" });
+    }
+    const isAssignmentExist = await Assignment.findById(assignmentId);
+    if (!isAssignmentExist) {
+      return res
+        .status(404)
+        .json({ message: "No assignment found with this id" });
+    }
+    const updatedAssignment = await Assignment.findByIdAndUpdate(
+      assignmentId,
+      {
+        title,
+        description,
+      },
+      { new: true }
+    );
+    if (!updatedAssignment) {
+      return res
+        .status(500)
+        .json({ message: "An Error occured Failed to update Assignment" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Successfully updated assignment", updatedAssignment });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Server error,Failed to update assignment" });
+  }
+};
+
 export const getAssignmentsByCourse = async (req, res) => {
   const { courseId } = req.params;
 
@@ -156,5 +202,38 @@ export const attendQuiz = async (req, res) => {
       message: "Error while processing quiz attempt",
       error: err.message,
     });
+  }
+};
+
+export const deleteAssignmentByCourse = async (req, res) => {
+  try {
+    const { courseId, assignmentId } = req.params;
+
+    if (!courseId || !assignmentId) {
+      return res
+        .status(400)
+        .json({ message: "Missing courseId or assignmentId" });
+    }
+
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ message: "No course found with this id" });
+    }
+
+    const assignment = await Assignment.findById(assignmentId);
+    if (!assignment) {
+      return res
+        .status(404)
+        .json({ message: "No assignment found with this id" });
+    }
+
+    await Assignment.findByIdAndDelete(assignmentId);
+
+    res.status(200).json({ message: "Assignment deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Server error, failed to delete assignment" });
   }
 };
