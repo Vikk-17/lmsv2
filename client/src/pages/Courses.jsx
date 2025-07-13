@@ -1,25 +1,67 @@
+import { useState, useMemo } from 'react';
 import CourseCard from '../components/UI/cards/CourseCard';
 import { Toaster } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCourses,fetchCategory } from '../api/courses';
+import clsx from 'clsx';
 function Courses() {
+  const [selectedCat, setSelectedCat] = useState('all');
+  const [search, setSearch] = useState('');
+  const [page,setPage] = useState(1);
+  const limit = 6;
   const {
-    data:courses,
+    data:courseData,
     isLoading,
     isError
-  } =  useQuery({
-    queryKey:['courses'],
-    queryFn: fetchCourses,
+  } = useQuery({
+    queryKey:['courses',page],
+    queryFn: () => fetchCourses({page,limit}),
+    keepPreviousData:true,
     staleTime:1000*60*5,
   });
   const {
-    data:category,
+    data:categories,
   } =  useQuery({
-    queryKey:['courses'],
+    queryKey:['categories'],
     queryFn: fetchCategory,
     staleTime:1000*60*5,
   });
-  
+  const courses = courseData?.courses;
+  const totalPages = courseData?.totalPages;
+  const handleCategorySelection = (value)=>{
+    setSelectedCat(value);
+  }
+
+const filterCourses = useMemo(()=>{
+  if(selectedCat && search){
+    if(selectedCat === 'all') return courses.filter(course => (course?.title).toLowerCase().includes(search.toLowerCase()));
+    return courses.filter(course=>course?.category?.name===selectedCat && (course?.title).toLowerCase().includes(search.toLowerCase()));
+  }else{
+    if(selectedCat === 'all') return courses;
+    return courses.filter(course=>course?.category?.name===selectedCat);
+  }
+
+  },[categories,selectedCat,isLoading,search,page]);
+
+   const getPageButtons = () => {
+    const buttons = [];
+    const maxButtons = 4;
+
+    let start = Math.max(1, page - 1);
+    let end = Math.min(totalPages, start + maxButtons - 1);
+
+    if (end - start + 1 < maxButtons) {
+      start = Math.max(1, end - maxButtons + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
+      buttons.push(i);
+    }
+
+    return buttons;
+  };
+
+  const pages = getPageButtons();
   return (
     <>
       <section id="breadcrumb" className='h-14 bg-[var(--clr-accent-100)]'>
@@ -35,43 +77,42 @@ function Courses() {
         <div className='container'>
           <div className='flex px-6 gap-x-4 h-16 w-1/2 mx-auto rounded-2xl border-2 border-[var(--clr-accent-900)]'>
             <img className='w-7 aspect-square' src="/icons/searchicon.svg" alt="" />
-            <input className='outline-none text-[var(--clr-primary-900)] text-xl placeholder-gray-300' type="text" name="search" placeholder='Search for a course '  />
+            <input onChange={(e)=>setSearch(e.target.value)} className='outline-none text-[var(--clr-primary-900)] text-xl placeholder-gray-300 w-full' type="text" name="search" placeholder='Search for a course '  />
           </div>
-          <nav>
-            <ul className='flex gap-x-10 mt-12 justify-center text-[var(--clr-primary-200)]'>
-              <li><a className='text-[var(--clr-accent-900)]' href="#">Cloud</a></li>
-              <li><a href="#">Ui Design</a></li>
-              <li><a href="#">Programming</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Soft Skill</a></li>
-              <li><a href="#">Network</a></li>
-              <li><a href="#">Data Analyst</a></li>
-            </ul>
-          </nav>
+            <div className='flex gap-x-10 mt-12 justify-center '>
+              {!isLoading && categories.map(category=>(
+                <button className={clsx(category?.name===selectedCat?'text-[var(--clr-accent-900)]':'text-[var(--clr-primary-200)]')} onClick={()=>handleCategorySelection(category?.name)} key={category?._id}>{category?.name}</button>
+              ))}
+            </div>
         </div>
       </section>
       <section id="courses" className='mt-24'>
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-            {console.log(courses)}
-            { !isLoading && courses.map(course =>(
+            { !isLoading && filterCourses.map(course =>(
               <CourseCard key={course._id} {...course} />
             ))}
           </div>
         </div>
       </section>
       <section id="pagination" className='mt-24 mb-40'>
-        <nav aria-label='Pagination'>
-          <ul className='flex text-2xl justify-center text-[var(--clr-accent-900)] items-center gap-x-10'>
-            <li><a className='text-xl' aria-label='Previous page' href="#">Back</a></li>
-            <li className='w-12 rounded-sm aspect-square text-white bg-[var(--clr-accent-900)]'><a className='flex items-center justify-center h-full' href="#">1</a></li>
-            <li className='w-12 rounded-sm aspect-square bg-[var(--clr-accent-100)]'><a className='flex items-center justify-center h-full' href="#">2</a></li>
-            <li className='w-12 rounded-sm aspect-square bg-[var(--clr-accent-100)]'><a className='flex items-center justify-center h-full' href="#">3</a></li>
-            <li className='w-12 rounded-sm aspect-square bg-[var(--clr-accent-100)] flex items-center justify-center'>...</li>
-            <li className='w-12 rounded-sm aspect-square bg-[var(--clr-accent-100)]'><a className='flex items-center justify-center h-full'  href="#">8</a></li>
-            <li><a className='text-xl' href="#">Next</a></li>
-          </ul>
-        </nav>
+        <div aria-label='Pagination'>
+          <div className='flex text-2xl justify-center text-[var(--clr-accent-900)] items-center gap-x-10'>
+            <button className='text-xl' aria-label='Previous page' disabled={page === 1} onClick={() => setPage((prev) => Math.max(prev - 1, 1))}> Prev </button>
+
+            {pages.map((p) => (
+              <button
+                key={p}
+                onClick={() => setPage(p)}
+                className={p === page ? 'w-12 rounded-sm aspect-square text-white bg-[var(--clr-accent-900)]' : 'w-12 rounded-sm aspect-square text-[var(--clr-accent-900) bg-[var(--clr-accent-200)]'}
+              >
+                {p}
+              </button>
+            ))}
+
+            <button className='text-xl' disabled={page === totalPages} onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}>Next</button>
+          </div>
+        </div>
       </section>
       <Toaster position='bottom-left' />
     </>

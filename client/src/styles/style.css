@@ -60,6 +60,9 @@
   h6{
     @apply text-heading-h6 
   }
+  button{
+    @apply cursor-pointer
+  }
 }
 
 @layer utilities{

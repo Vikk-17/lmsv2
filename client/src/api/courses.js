@@ -1,7 +1,8 @@
 import { axiosClient } from "./axiosClient";
 
-export const fetchCourses = async ()=>{
-    const res = await axiosClient.get('/courses');
+export const fetchCourses = async ({page,limit})=>{
+    const res = await axiosClient.get('/courses',{params: {page,limit}});
+    console.log(res.data);
     return res.data;
 }
 

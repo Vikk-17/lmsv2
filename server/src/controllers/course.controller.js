@@ -8,7 +8,10 @@ import {
 
 export const getAllCourses = async (req, res) => {
   try {
-    const courses = await findAllCourses();
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    const skip = (page-1)*limit;
+    const courses = await findAllCourses(page,limit,skip);
     res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ message: "internal error", error });

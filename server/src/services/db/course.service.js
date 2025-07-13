@@ -1,8 +1,10 @@
 import Course from "../../models/course.model.js";
 import Category from "../../models/category.model.js";
 
-export const findAllCourses = async () => {
-  return await Course.find()
+export const findAllCourses = async (page,limit,skip) => {
+  const courses = await Course.find()
+  .skip(skip)
+  .limit(limit)
   .populate({
     path: 'instructor',
     select: '',
@@ -12,7 +14,10 @@ export const findAllCourses = async () => {
     select: 'name'
   }
   })
-  .populate('category')
+  .populate('category');
+  const  total = await Course.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  return {courses,currentpage: page,totalPages:totalPages,totalCourses:total}
 };
 export const insertIntoCourse = async (CourseData) => {
   return await Course.create(CourseData);
