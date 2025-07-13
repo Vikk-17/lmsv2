@@ -1,3 +1,4 @@
+import Course from "../models/course.model.js";
 import {
   insertIntoCourse,
   findAllCourses,
@@ -8,10 +9,31 @@ import {
 
 export const getAllCourses = async (req, res) => {
   try {
-    const courses = await findAllCourses();
-    res.status(200).json(courses);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 3;
+    const skip = (page - 1) * limit;
+
+    const totalCourses = await Course.countDocuments();
+    const courses = await Course.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+
+    const totalPages = Math.ceil(totalCourses / limit);
+
+    return res.status(200).json({
+      courses,
+      totalCourses,
+      totalPages,
+      currentPage: page,
+      limit,
+    });
   } catch (error) {
-    res.status(500).json({ message: "internal error", error });
+    console.error("🔥 Error in getAllCourses:", error); // ✅ add this
+    return res.status(500).json({
+      message: "Internal server error",
+      error: error.message || error,
+    });
   }
 };
 

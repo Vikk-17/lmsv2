@@ -8,7 +8,6 @@ const lectureSchema = new Schema({
     type: String,
     trim: true,
     required: true,
-    unique: true,
   },
   videoUrl: {
     type: String,
@@ -71,7 +70,7 @@ const courseSchema = new Schema(
     // Course category - required, trimmed string
     category: {
       type: Schema.Types.ObjectId,
-      ref:"Category"
+      ref: "Category",
     },
     // Language in which the course is offered - required string
     language: {
