@@ -14,8 +14,8 @@ function Home() {
             <h1 className='text-[var(--clr-accent-100)] max-w-xl leading-tight'>Empower Your Learning with Gir Technologies</h1>
             <p className='max-w-[27rem]'>Join us in shaping a brighter future by nurturing potential, empowering minds, and fostering growth through education and collaboration.</p>
             <div className='flex gap-x-4'>
-              <Link to='cources' className='w-42 h-10 rounded-lg bg-[var(--clr-accent-900)] justify-center flex items-center' >Explore Courses</Link>
-              <Link to='cources' className='w-42 h-10 rounded-lg border justify-center flex items-center' >Enquiry Now</Link>
+              <Link to='courses' className='w-42 h-10 rounded-lg bg-[var(--clr-accent-900)] justify-center flex items-center' >Explore Courses</Link>
+              <Link to='courses' className='w-42 h-10 rounded-lg border justify-center flex items-center' >Enquiry Now</Link>
             </div>
           </div>
           <div id="hero-img" className='place-self-end'>
@@ -69,7 +69,7 @@ function Home() {
             <p>Explore Our Popular Cources</p>
           </div>
           <div>
-            <button className='bg-[var(--clr-accent-900)] py-3 px-12 rounded-lg '>All Courses</button>
+            <Link to='courses' className='bg-[var(--clr-accent-900)] py-3 px-12 rounded-lg '>All Courses</Link>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-12 gap-x-8">

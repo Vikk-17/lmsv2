@@ -7,7 +7,7 @@ export const findAllCourses = async (page,limit,skip) => {
   .limit(limit)
   .populate({
     path: 'instructor',
-    select: '',
+    select: 'user',
     populate: {
     path: 'user',
     model: 'User',
@@ -24,7 +24,22 @@ export const insertIntoCourse = async (CourseData) => {
 };
 
 export const findCourseById = async (CourseId) => {
-  return await Course.findById(CourseId).populate("module");
+  return await Course.findById(CourseId).populate({
+    path:'module',
+    populate:{
+      path:'video',
+      model: 'Video'
+    }
+  })
+  .populate({
+    path: 'instructor',
+    select: 'user socialLinks',
+    populate: {
+    path: 'user',
+    model: 'User',
+    select: 'name'
+  }
+  });
 };
 export const updateCourseById = async (CourseId, updateData) => {
   return await Course.findByIdAndUpdate(CourseId, updateData, { new: true });

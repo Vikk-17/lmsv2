@@ -42,8 +42,8 @@ function Login() {
                 <p className='text-[var(--clr-primary-400)]'>Your learning journey starts here.</p>
               </div>
               <form onSubmit={handleSubmit} className='flex flex-col gap-y-4'>
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
-                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password'  onChange={(e) => setPassword(e.target.value)} />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)]' name='email' type="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} required />
+                <input className='border outline-none h-12 rounded-lg px-4 text-gray-600 border-[var(--clr-primary-200)] ' name='password' type="password" placeholder='Password'  onChange={(e) => setPassword(e.target.value)} required />
                 <div className='flex justify-between items-center'>
                   <label>
                     <input type="checkbox" name="remember" />
