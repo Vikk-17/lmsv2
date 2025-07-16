@@ -9,10 +9,9 @@ import {
 } from "../controllers/course.controller.js";
 const router = express.Router();
 
-router.route("/")
-  .get(getAllCourses)
-  .post(createCourse);
-router.route("/:courseid")
+router.route("/").get(getAllCourses).post(createCourse);
+router
+  .route("/:courseName")
   .get(getCourse)
   .put(updateCourse)
   .delete(deleteCourse);

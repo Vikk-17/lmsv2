@@ -7,6 +7,53 @@ const generateOTP = () => {
   return Math.floor(1000 + Math.random() * 9000).toString();
 };
 
+const forgetPasswordEmail = async (receiverEmail) => {
+  const otp = generateOTP();
+
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: '"GIR Technologies" <info@girtechnologies.com>',
+    to: receiverEmail,
+    subject: "Reset Your Password - OTP Verification",
+    text: `Your OTP to reset your password is: ${otp}. This OTP will expire in 10 minutes.`,
+    html: `
+      <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 650px; margin: 0 auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 30px 40px; text-align: center; border-radius: 15px 15px 0 0;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 28px;">GIR Technologies</h1>
+          <p style="color: rgba(255,255,255,0.9); font-size: 16px;">Password Reset OTP</p>
+        </div>
+        <!-- Body -->
+        <div style="background: #ffffff; padding: 40px; border-radius: 0 0 15px 15px;">
+          <h2 style="color: #2c3e50;">Reset Your Password</h2>
+          <p style="color: #5a6c7d;">We received a request to reset your password. Use the OTP below to proceed. This code will expire in 10 minutes.</p>
+          <div style="margin: 30px 0; text-align: center;">
+            <div style="display: inline-block; background: #f1f1f1; padding: 20px 30px; border-radius: 10px;">
+              <h1 style="font-size: 36px; color: #2980b9; letter-spacing: 8px; font-family: 'Courier New', monospace;">${otp}</h1>
+            </div>
+          </div>
+          <p style="color: #e74c3c; text-align: center;">Do not share this code with anyone.</p>
+          <hr style="margin: 40px 0;">
+          <p style="font-size: 14px; color: #888;">If you did not request this OTP, please ignore this email or contact our support team immediately.</p>
+        </div>
+        <!-- Footer -->
+        <div style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); padding: 25px 40px; text-align: center; border-radius: 0 0 15px 15px;">
+          <p style="color: rgba(255,255,255,0.8); font-size: 14px;">© 2024 GIR Technologies. All rights reserved.</p>
+        </div>
+      </div>
+    `,
+  });
+
+  return otp;
+};
+
 const sendEmailService = async (receiverEmail) => {
   const otp = generateOTP();
 
@@ -145,4 +192,4 @@ const sendEmailService = async (receiverEmail) => {
   return otp;
 };
 
-export { sendEmailService, generateOTP };
+export { sendEmailService, generateOTP, forgetPasswordEmail };
