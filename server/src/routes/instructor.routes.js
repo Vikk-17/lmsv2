@@ -1,5 +1,9 @@
 import express from "express";
-import { registerInstructor } from "../controllers/instructor.controller.js";
+import {
+  registerInstructor,
+  getInstructorDetails,
+  updateDetails,
+} from "../controllers/instructor.controller.js";
 import { validateUser } from "../middlewares/validate.middleware.js";
 import { registerSchema } from "../validators/auth.validator.js";
 
@@ -13,5 +17,6 @@ router.get("/", (req, res) => {
 // router.post('/register',validateUser(registerSchema),registerInstructor);
 
 router.post("/instructor-apply", instructorApply);
-
+router.get("/get-my-profile/:instructorId", getInstructorDetails);
+router.post("/update-profile", updateDetails);
 export default router;

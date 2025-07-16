@@ -5,7 +5,7 @@ import {
 import teacherApply from "../models/teacherApply.model.js";
 import { insertUser, findUserByEmail } from "../services/db/user.service.js";
 import bcrypt from "bcryptjs";
-import user from "../models/user.model.js";
+import User from "../models/user.model.js";
 
 export const registerAdmin = async (req, res) => {
   try {
@@ -52,8 +52,17 @@ export const instructorReject = async (req, res) => {
   }
 };
 
+export const getAllTrainer = async (req, res) => {
+  try {
+    const allUser = await User.find({ role: "trainer" }).select("-password");
+    res.status(200).json(allUser);
+  } catch (error) {
+    res.status(500).json({ message: "server error", error });
+  }
+};
+
 export const createTeacher = async (req, res) => {
-  const { email, name, password, phoneNumber } = req.body;
+  const { email, name, password, phoneNumber, bio } = req.body;
 
   if (!email || !name || !phoneNumber) {
     return res.status(400).json({
@@ -70,7 +79,7 @@ export const createTeacher = async (req, res) => {
       });
     }
 
-    const isexist = await user.findOne({ email });
+    const isexist = await User.findOne({ email });
     if (isexist) {
       return res.status(404).json({
         message: "Already have an account.",
@@ -96,11 +105,12 @@ export const createTeacher = async (req, res) => {
     const hashedPassword = await bcrypt.hash(realPassword, saltRounds);
 
     // Create new instructor user
-    const newInstructor = new user({
+    const newInstructor = new User({
       name,
       email,
       password: hashedPassword,
       role: "trainer",
+      bio,
       phone: phoneNumber,
     });
 

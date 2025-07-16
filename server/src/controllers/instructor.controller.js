@@ -2,6 +2,25 @@ import teacherApply from "../models/teacherApply.model.js";
 import User from "../models/user.model.js";
 import { insertUser, findUserByEmail } from "../services/db/user.service.js";
 
+export const getInstructorDetails = async (req, res) => {
+  const { instructorId } = req.params;
+  try {
+    if (!instructorId) {
+      return res.status(404).json({ message: "No instructor id found" });
+    }
+    const userDetails = await User.findById(instructorId).select("-password");
+    if (!userDetails) {
+      return res
+        .status(404)
+        .json({ message: "No instructor found with this id" });
+    }
+    res.status(200).json(userDetails);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
 export const registerInstructor = async (req, res) => {
   try {
     const data = req.body;
@@ -21,7 +40,7 @@ export const registerInstructor = async (req, res) => {
 
 export const instructorApply = async (req, res) => {
   try {
-    const { name, phoneNumber, email, address } = req.body;
+    const { name, phoneNumber, email, address, bio } = req.body;
 
     //Name Check
     if (!name || !phoneNumber || !email) {
@@ -62,6 +81,7 @@ export const instructorApply = async (req, res) => {
       name,
       phoneNumber,
       email,
+      bio,
       address,
       success: true,
       submit: true,
@@ -80,5 +100,54 @@ export const instructorApply = async (req, res) => {
       message: "Internal server error",
       error: error.message,
     });
+  }
+};
+
+export const updateDetails = async (req, res) => {
+  try {
+    const { instructorId, name, phoneNumber, email, address, bio } = req.body;
+
+    if (!instructorId) {
+      return res.status(400).json({ message: "Instructor ID not provided" });
+    }
+
+    // If no fields are provided
+    if (!name && !phoneNumber && !email && !address && !bio) {
+      return res
+        .status(400)
+        .json({ message: "Nothing to update. All fields are empty." });
+    }
+
+    // Find the instructor
+    const instructorDetails = await User.findById(instructorId);
+
+    if (!instructorDetails) {
+      return res.status(404).json({ message: "Instructor not found" });
+    }
+
+    // Update only the provided fields
+    if (name) instructorDetails.name = name;
+    if (phoneNumber) instructorDetails.phoneNumber = phoneNumber;
+    if (email) instructorDetails.email = email;
+    if (address) instructorDetails.address = address;
+    if (bio) instructorDetails.bio = bio;
+
+    const updatedInstructor = await instructorDetails.save();
+
+    res.status(200).json({
+      message: "Instructor details updated successfully",
+      instructor: {
+        _id: updatedInstructor._id,
+        name: updatedInstructor.name,
+        email: updatedInstructor.email,
+        phoneNumber: updatedInstructor.phoneNumber,
+        address: updatedInstructor.address,
+        bio: updatedInstructor.bio,
+        role: updatedInstructor.role,
+      },
+    });
+  } catch (error) {
+    console.error("Error updating instructor details:", error);
+    res.status(500).json({ message: "Server error", error });
   }
 };

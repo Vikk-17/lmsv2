@@ -4,6 +4,7 @@ import {
   getInstructorApplication,
   instructorReject,
   createTeacher,
+  getAllTrainer,
 } from "../controllers/admin.controller.js";
 import { validateUser } from "../middlewares/validate.middleware.js";
 import { registerSchema } from "../validators/auth.validator.js";
@@ -19,5 +20,6 @@ router.post("/register", validateUser(registerSchema), registerAdmin);
 router.get("/get-teacher-apply", getInstructorApplication);
 router.post("/teacher-reject", instructorReject);
 router.post("/create-teacher", createTeacher);
+router.get("/get-all-teacher", getAllTrainer);
 
 export default router;
