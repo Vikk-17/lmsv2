@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FaAngleUp,FaAngleDown } from "react-icons/fa6";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
@@ -11,11 +10,18 @@ import { FaFacebookF } from "react-icons/fa6";
 import clsx from 'clsx';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCourseByID } from '../api/courses';
+import useAuthStore from '../store/authStore';
+import useCartStore from '../store/cartStore';
 
 function CourseDetails() {
+    const {user,isAuthenticated, cookieLogin} = useAuthStore();
+    const {addToCart} = useCartStore();
     const [activeTab,setActiveTab] = useState('overview');
     const [activeList,setActiveList] = useState(null);
+    const [cart,setCart] = useState(false);
     const {courseID} = useParams();
+    const navigate = useNavigate();
+    const location = useLocation();
     const {
         data: courseDetails,
         isLoading,
@@ -29,6 +35,18 @@ function CourseDetails() {
 
     const toggleList = (idx)=>{
         setActiveList(activeList===idx?null:idx);
+    }
+    const handleAuthNavigation = () =>{
+        if(!isAuthenticated){
+            navigate('/login',{state:{from:location.pathname}})
+        }
+    }
+
+    const handleCart =()=>{
+        if(!cart){
+            addToCart()
+            setCart(true);
+        }
     }
     return (
         <>
@@ -104,8 +122,8 @@ function CourseDetails() {
                                             </a>
                                         </div>
                                         <div className='flex gap-x-4'>
-                                            <button className='bg-[var(--clr-accent-900)] hover:bg-[var(--clr-accent-1000)] cursor-pointer rounded-lg py-4 flex-1'>enroll now</button>
-                                            <button className='flex gap-x-2 rounded-lg cursor-pointer text-black items-center justify-center px-5 py-4 border border-[var(--clr-accent-900)]'>
+                                            <button onClick={()=>{handleAuthNavigation()}} className='bg-[var(--clr-accent-900)] hover:bg-[var(--clr-accent-1000)] cursor-pointer rounded-lg py-4 flex-1'>enroll now</button>
+                                            <button onClick={()=>{handleAuthNavigation(); handleCart()}} className='flex gap-x-2 rounded-lg cursor-pointer text-black items-center justify-center px-5 py-4 border hover:border-[var(--clr-accent-1000)] border-[var(--clr-primary-400)] '>
                                                 +
                                                 <svg className=" w-6 h-6 ">
                                                     <use href="../icons/detailsicon.svg#ic7"></use>

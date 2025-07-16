@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { loginUser,registerUser } from "../api/auth";
 import { getUser } from "../api/user";
-import toast from "react-hot-toast";
 const useAuthStore = create(
   persist(
     (set) => ({

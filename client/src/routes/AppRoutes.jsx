@@ -11,6 +11,8 @@ import Dashboard from '../pages/Dashboard';
 import CourseDetails from '../pages/CourseDetails';
 import MyCourses from '../pages/MyCourses';
 import Watch from '../pages/Watch';
+import InstructorDash from '../pages/InstructorDash';
+import ShoppingCart from '../pages/ShoppingCart';
 export default function AppRoutes() {
   return (
       <Routes>
@@ -20,6 +22,7 @@ export default function AppRoutes() {
           <Route path="login"  element={<Login/>} />
           <Route path='signup' element={<Signup/>}/>
           <Route path='services' element={<Services/>}/>
+          <Route path='cart' element={<ShoppingCart/>}/>
           <Route path='about-us' element={<AboutUs/>}/>
           <Route path='courses/:courseID' element={<CourseDetails/>}/>
         </Route>
@@ -27,6 +30,7 @@ export default function AppRoutes() {
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/my-courses' element={<MyCourses/>}/>
           <Route path='/watch' element={<Watch/>}/>
+          <Route path='/id' element={<InstructorDash/>}/>
         </Route>
       </Routes>
   );

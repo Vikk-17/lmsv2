@@ -2,8 +2,10 @@ import {useEffect} from 'react';
 import logo from '../../assets/gir-logo.svg'
 import { Link } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
+import useCartStore from '../../store/cartStore';
 function Header () {
   const {user,isAuthenticated, cookieLogin} = useAuthStore();
+  const {item} = useCartStore();
   useEffect(()=>{
     cookieLogin();
   },[]);
@@ -41,11 +43,11 @@ function Header () {
             </ul>
           : <ul className='flex items-center gap-x-7'>
                <li>
-                <Link  className='flex items-center gap-x-2'>
+                <Link to="/cart" className='flex items-center gap-x-2 relative '>
                   <svg className="icon w-6 h-6">
                       <use href='/icons/cart.svg' ></use>
                   </svg>
-                  <span>Cart</span>
+                  <span className='absolute bg-[var(--clr-accent-1000)] h-5 w-5 rounded-full -top-2.5 left-2 flex items-center justify-center text-sm '>{item}</span>
                 </Link>
                </li>
                <li>

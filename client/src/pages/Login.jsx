@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react'
 import {toast, Toaster } from 'react-hot-toast';
 import useAuthStore from '../store/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {login, isAuthenticated} = useAuthStore();
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -16,7 +17,8 @@ function Login() {
     e.preventDefault();
     const {success,error} = await login({email,password});
     if(success){
-      navigate('/courses');
+      const from = location?.state?.from || '/courses'
+      navigate(from, {replace:true});
       toast.success('login success',{position: 'bottom-left'});
     } else {
       toast.error(error,{ position:"bottom-left" });
