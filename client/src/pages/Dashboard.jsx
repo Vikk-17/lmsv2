@@ -1,34 +1,29 @@
 import React from 'react';
 import Dashnav from '../components/UI/components/Dashnav';
-import { IoIosArrowRoundForward } from "react-icons/io";
-
+import DailyStreak from '../components/UI/cards/DailyStreak';
+import WatchTime from '../components/UI/cards/WatchTime';
+import WatchingCourse from '../components/UI/cards/WatchingCourse';
+import Recommended from '../components/UI/components/Recommended';
+import GreetingCard from '../components/UI/cards/GreetingCard';
 function Dashboard() {
   return (
     <>
-        <Dashnav/>
-        <div className='flex'>
-          <div className='w-full sm:w-2/3 '>
-            <section className='bg-[var(--clr-accent-900)] ml-4 my-6 text-white px-10 rounded-xl flex justify-between'>
-              <div className='flex flex-col gap-y-8 py-7'> 
-                <div className='space-y-0.5'>
-                  <p>Welcome Back,</p>
-                  <h4 className='text-white'>Sumit Devs</h4>
-                </div>
-                <p>
-                  Go back to the
-                  <a className='inline-flex items-center' href="/">
-                   &nbsp;home
-                  <IoIosArrowRoundForward aria-hidden="true" focusable="false"/>
-                  </a>
-                </p>
-              </div>
-              <img className='object-cover ' src="./images/greetimg.svg" alt="" />
-            </section>
+        <GreetingCard/>
+        <section className='space-y-4 mt-8'>
+          <h4>Continue Learning</h4>
+          <div className='grid grid-cols-2 gap-x-4 '>
+            <WatchingCourse/>
+            <WatchingCourse/>
           </div>
-          <div className='w-full sm:w-1/3'>
-
+        </section>
+        <section className='space-y-4 mt-8'>
+          <h4>Recommended Courses For You</h4>
+          <div className='grid grid-cols-3 gap-x-3'>
+            <Recommended/>
+            <Recommended/>
+            <Recommended/>
           </div>
-        </div>
+        </section>
     </>
   )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import UnderDev from '../components/UI/components/UnderDev'
-
+import UnderDev from '../components/UI/components/UnderDev';
 function AboutUs() {
   return (
     <>

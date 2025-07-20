@@ -14,6 +14,7 @@ import Watch from '../pages/Watch';
 import InstructorDash from '../pages/InstructorDash';
 import ShoppingCart from '../pages/ShoppingCart';
 import Payment from '../pages/Payment';
+import Profile from '../pages/Profile';
 export default function AppRoutes() {
   return (
       <Routes>
@@ -32,6 +33,7 @@ export default function AppRoutes() {
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/my-courses' element={<MyCourses/>}/>
           <Route path='/watch' element={<Watch/>}/>
+          <Route path='/profile' element={<Profile/>}/>
           <Route path='/id' element={<InstructorDash/>}/>
         </Route>
       </Routes>
