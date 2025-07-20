@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import useCartStore from '../../store/cartStore';
 import { FaUser } from "react-icons/fa";
-import { AiOutlineLogout } from "react-icons/ai";
 
 
 function Header () {
@@ -14,10 +13,10 @@ function Header () {
   const handleMenu = (currentMenu)=>{
     setMenu(currentMenu===menu?null:currentMenu);
   }
+
   useEffect(()=>{
     cookieLogin();
-    console.log(user);
-  },[]);
+  },[isAuthenticated]);
 
   return (
     <header className='bg-[var(--clr-primary-900)]' >
@@ -65,7 +64,7 @@ function Header () {
                       <img className='h-full w-full object-contain' src="/icons/user.svg" alt="" />
                   </div>
                   <div className='flex flex-col items-start'>
-                    <span className='text-sm'>Hi,&nbsp;{user.name}</span>
+                    <span className='text-sm'>Hi,&nbsp;{user?.name}</span>
                     <span className='text-xs text-[var(--clr-primary-200)]'>{user.role==='student'?`Learner at GIR Technologies`:`Instructor at GIR Technologies`}</span>
                   </div>
                   { menu === "menu1"
