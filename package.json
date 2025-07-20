@@ -9,7 +9,13 @@
     "dev": "nodemon index.js",
     "test": "echo \"No test configured\" && exit 0"
   },
-  "keywords": ["LMS", "express", "backend", "cloudinary", "multer"],
+  "keywords": [
+    "LMS",
+    "express",
+    "backend",
+    "cloudinary",
+    "multer"
+  ],
   "author": "Sumit Devs",
   "license": "ISC",
   "type": "commonjs",
