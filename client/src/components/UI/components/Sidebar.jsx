@@ -7,7 +7,7 @@ function Sidebar() {
     <aside className='w-66 '>
         <div className='flex  gap-y-6 flex-col mt-10 '>
             <div className="px-12 py-5 border-b-2 border-[var(--clr-primary-100)] ">
-                <a  href="/"><img  src={logo} alt="" /></a>
+                <Link  to="/dashboard"><img  src={logo} alt="" /></Link>
             </div>
             <nav className='flex flex-col gap-y-32 text-[var(--clr-primary-200)]'>
                 <ul className='flex flex-col gap-y-6'>
