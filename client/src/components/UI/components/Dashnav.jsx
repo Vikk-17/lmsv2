@@ -2,7 +2,7 @@ import React from 'react'
 
 function Dashnav() {
   return (
-        <div className='flex justify-between items-center bg-white ml-4 py-4 mt-10 pl-6 pr-10 rounded-2xl'>
+        <div className='flex  z-20 justify-between items-center bg-white ml-4 py-4 mt-10 pl-6 pr-10 rounded-2xl'>
             <div>
                 <h6>Dashboard</h6>
                 <nav className='text-[var(--clr-primary-200)]'>

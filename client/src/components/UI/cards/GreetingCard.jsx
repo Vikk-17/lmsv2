@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoIosArrowRoundForward } from "react-icons/io";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 function GreetingCard() {
   return (
@@ -9,13 +9,13 @@ function GreetingCard() {
             <p>Welcome Back,</p>
             <h4 className='text-white'>Sumit Devs</h4>
         </div>
-        <p>
-            Go back to the
-            <a className='inline-flex items-center' href="/">
-            &nbsp;home
-            <IoIosArrowRoundForward aria-hidden="true" focusable="false"/>
+        <span>
+            Go back to the &nbsp;
+            <a className='inline-flex  gap-x-1 underline  items-center' href="/">
+            Home
+            <FaArrowUpRightFromSquare className='text-sm' />
             </a>
-        </p>
+        </span>
         </div>
         <img className='object-cover ' src="./images/greetimg.svg" alt="" />
     </section>
