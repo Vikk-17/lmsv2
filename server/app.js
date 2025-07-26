@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 import dbConnect from "./src/config/db.config.js";
 import authRouter from "./src/routes/auth.routes.js";
-import userRouter from "./src/routes/user.routes.js"
+import userRouter from "./src/routes/user.routes.js";
 import instructorRouter from "./src/routes/instructor.routes.js";
 import courseRouter from "./src/routes/course.routes.js";
 import adminRouter from "./src/routes/admin.routes.js";
@@ -15,9 +15,11 @@ import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
 import expressFileUpload from "express-fileupload";
 import categoryRoute from "./src/routes/category.routes.js";
+import ratingRoutes from "./src/routes/rating.routes.js";
 
 import { corsOptions } from "./src/config/cors.config.js";
 const app = express();
+
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
 
@@ -44,7 +46,7 @@ app.use("/api/user", userRouter);
 app.use("/api/instructor", instructorRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/courses", courseRouter);
-app.use("/api/category",categoryRoute);
+app.use("/api/category", categoryRoute);
 //Cart/whishlist
 app.use("/api/whishlist", whishlistRoutes);
 //Assignment
@@ -53,6 +55,7 @@ app.use("/api/assignment", assigment);
 app.use("/api/video", videoRoutes);
 //Progress Routes
 app.use("/api/progress", progress);
+app.use("/api/rating", ratingRoutes);
 
 app.listen(PORT, () => {
   console.log(
