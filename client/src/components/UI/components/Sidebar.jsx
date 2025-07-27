@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
-    <aside className='w-64 fixed top-0 left-0 h-screen z-20 bg-white pb-24'>
-        <div className='flex h-full  gap-y-6 flex-col mt-10 '>
-            <div className="px-12 py-5 border-b-2 border-[var(--clr-primary-100)] ">
+    <aside className='w-64 border border-gray-100 fixed top-0 left-0 h-screen z-20 bg-white pb-24'>
+        <div className='flex h-full  gap-y-6 flex-col'>
+            <div className="px-12 py-4.5 ">
                 <Link  to="/dashboard"><img  src={logo} alt="" /></Link>
             </div>
             <nav className='flex justify-between flex-col h-full text-[var(--clr-primary-200)]'>
@@ -20,7 +20,7 @@ function Sidebar() {
                         </Link>
                     </li>
                         <li>
-                        <Link className='flex active:bg-[var(--clr-accent-100)] hover:bg-[var(--clr-accent-100)] hover:text-[var(--clr-accent-900)] hover:border-r-4 active:border-r-4 border-[var(--clr-accent-900)] active:text-[var(--clr-accent-900)] items-center gap-x-4 px-12 py-1' to="/my-courses">
+                        <Link className='flex active:bg-[var(--clr-accent-100)] hover:bg-[var(--clr-accent-100)] hover:text-[var(--clr-accent-900)] hover:border-r-4 active:border-r-4 border-[var(--clr-accent-900)] active:text-[var(--clr-accent-900)] items-center gap-x-4 px-12 py-1' to="/mycourses">
                             <svg className="h-6 w-6 fill-current ">
                             <use href="./icons/sidebar.svg#cources"></use>
                             </svg>

@@ -87,7 +87,7 @@ function Header () {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/my-courses" className='inline-flex items-center gap-x-2 hover:text-[var(--clr-accent-900)]'>
+                      <Link to="/mycourses" className='inline-flex items-center gap-x-2 hover:text-[var(--clr-accent-900)]'>
                         <svg className="h-4 w-4 fill-current ">
                           <use href="./icons/sidebar.svg#cources"></use>
                         </svg>
