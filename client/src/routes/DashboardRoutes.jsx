@@ -5,6 +5,7 @@ import RoleBasedDashboard from "../components/Auth/RoleBasedDashboard";
 import MyCourses from "../pages/MyCourses";
 import Profile from "../pages/Profile";
 import Watch from "../pages/Watch";
+import CreateCourse from "../pages/CreateCourse";
 import PageNotFound from "../pages/PageNotFound";
 import Unauthorized from "../pages/Unauthorized";
 
@@ -24,7 +25,7 @@ function DashboardRoutes() {
                     </Route>
 
                     <Route element={<ProtectedRoutes roles={['instructor']} />}>
-                        {/* <Route path="managecourses" element={<ManageCourses />} /> */}
+                        <Route path="create-course" element={<CreateCourse />} />
                     </Route>
                 </Route>
                 <Route path='/unauthorized' element={<Unauthorized/>} />

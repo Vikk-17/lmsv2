@@ -51,7 +51,7 @@ function Header () {
             </ul>
           : <ul className='flex items-center gap-x-7'>
                <li>
-                <Link to="/cart" className='flex items-center gap-x-2 relative '>
+                <Link to="/cart" className='flex items-center gap-x-2 relative'>
                   <svg className="icon w-6 h-6">
                       <use href='/icons/cart.svg' ></use>
                   </svg>
@@ -65,7 +65,7 @@ function Header () {
                   </div>
                   <div className='flex flex-col items-start'>
                     <span className='text-sm'>Hi,&nbsp;{user?.name}</span>
-                    <span className='text-xs text-[var(--clr-primary-200)]'>{user.role==='student'?`Learner at GIR Technologies`:`Instructor at GIR Technologies`}</span>
+                    <span className='text-xs text-[var(--clr-primary-200)]'>{user.role==='student'?`Learner at GIR`:`Instructor at GIR`}</span>
                   </div>
                   { menu === "menu1"
                   ? <svg className="icon w-6 h-6">

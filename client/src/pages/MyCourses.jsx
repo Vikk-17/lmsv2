@@ -4,12 +4,12 @@ import WatchTime from '../components/UI/cards/WatchTime';
 import GreetingCard from '../components/UI/cards/GreetingCard';
 function MyCourses() {
   return (
-    <>
+    <div className='flex mx-4 my-6 gap-x-4'>
         <div className='w-full sm:flex-2/3'>
           <GreetingCard/>
           <section className='space-y-4 mt-8'>
             <div className='flex flex-col gap-y-8'>
-              <h4>My Courses</h4>
+              <h5>My Courses</h5>
               <div role='tablist' className='flex  bg-white text-xl rounded-xl'>
                 <button role='tab' aria-selected='false' aria-controls='panel-1' id='tab-1' className='py-4 px-6 border-b-2 bg-[var(--clr-accent-200)] text-[var(--clr-accent-900)] rounded-tl-xl rounded-bl-xl'>All</button>
                 <button role='tab' aria-selected='false' aria-controls='panel-2' id='tab-2' className='py-4 px-6 hover:bg-[var(--clr-accent-200)] '>Active</button>
@@ -159,7 +159,7 @@ function MyCourses() {
               <WatchTime/>
           </div>
         </div>
-    </>
+    </div>
   )
 }
 
