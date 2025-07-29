@@ -118,7 +118,7 @@ function AboutUs() {
           <div className="grid lg:grid-cols-3 gap-12 items-start">
             <div className="lg:col-span-1">
               <img
-                src="/images/Chief_officer.jpg"
+                src="/images/chief_officer.jpg"
                 alt="CEO Portrait"
                 className="w-full max-w-sm rounded-lg object-cover object-top"
               />
