@@ -34,4 +34,4 @@ function DashboardRoutes() {
     )
 }
 
-export default DashboardRoutes
+export default DashboardRoutes;

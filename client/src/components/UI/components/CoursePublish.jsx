@@ -2,7 +2,7 @@ import React from 'react'
 
 function CoursePublish() {
   return (
-    <>
+    <div className='course-publish'>
         <div class="bg-white rounded-lg shadow-sm mb-8">
                 <div class="px-6 py-4 border-b border-gray-100">
                     <h3 class="text-lg font-medium text-gray-800">Course Visibility</h3>
@@ -22,8 +22,8 @@ function CoursePublish() {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Access Control</label>
-                            <div class="relative">
-                                <select class="w-full border border-gray-300 rounded text-gray-700 py-2 pl-3 pr-8 bg-white focus:border-primary">
+                            <div class="relative ">
+                                <select class="w-full border   border-gray-300 rounded text-gray-700 py-2 pl-3 pr-8 bg-white focus:border-primary">
                                     <option>Open to everyone</option>
                                     <option>Invite only</option>
                                     <option>Password protected</option>
@@ -372,7 +372,7 @@ function CoursePublish() {
                 </div>
             </div>
         </div>
-    </>
+    </div>
   )
 }
 

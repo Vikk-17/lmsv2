@@ -14,7 +14,7 @@ function AddLesson({onClose}) {
 
   return (
     <div class="bg-gray-900/30  backdrop-blur-xs fixed  inset-0 top-0 z-20  ">
-            <div className='w-1/2 mx-auto mt-10 bg-white rounded-lg  shadow-sm border border-gray-200 overflow-hidden '>
+            <div className='w-1/2 mx-auto mt-16 bg-white rounded-lg  shadow-sm border border-gray-200 overflow-hidden '>
                 <div class="px-6 py-4 border-b border-gray-200 bg-[var(--clr-accent-900)]">
                     <h3 class="text-lg font-medium text-white ">Add New Lesson</h3>
                 </div>

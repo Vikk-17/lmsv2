@@ -78,12 +78,6 @@ function CourseInfo() {
                                 </div>
                             </div>
                         </div>
-
-                        <div class="md:col-span-2">
-                            <label for="course-tags" class="block text-sm font-medium text-gray-700 mb-1">Tags</label>
-                            <input type="text" id="course-tags" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--clr-accent-900)] focus:border-transparent outline-none" placeholder="e.g. javascript, web development, coding"/>
-                            <p class="text-xs text-gray-500 mt-1">Separate tags with commas</p>
-                        </div>
                     </div>
                 </div>
             </div>
