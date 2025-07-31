@@ -2,7 +2,8 @@ import React from 'react'
 import DailyStreak from '../components/UI/cards/DailyStreak';
 import WatchTime from '../components/UI/cards/WatchTime';
 import GreetingCard from '../components/UI/cards/GreetingCard';
-function MyCourses() {
+
+function StudentMyCourses () {
   return (
     <div className='flex mx-4 my-6 gap-x-4'>
         <div className='w-full sm:flex-2/3'>
@@ -163,4 +164,5 @@ function MyCourses() {
   )
 }
 
-export default MyCourses
+export default StudentMyCourses;
+
