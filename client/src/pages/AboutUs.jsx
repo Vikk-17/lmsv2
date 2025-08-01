@@ -6,18 +6,18 @@ function AboutUs() {
     <>
       {/* Heading Section */}
       <section className="bg-[#455CE9] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full pb-3 p-8 sm:p-8">
+        <div className="max-w-7xl mx-auto w-full pb-3 p-8 sm:p-8 lg:py-0">
           <div className="relative flex items-center justify-between">
-            <div className="z-1">
-              <h1 className="text-4xl sm:text-5xl text-white font-bold mb-3 sm:mb-6">About Us</h1>
+            <div className="flex-1 z-1">
+              <h1 className="text-4xl sm:text-5xl text-white font-bold mb-3 sm:mb-6">
+                About Us
+              </h1>
               <p className="text-lg font-satoshi font-medium  leading-normal">
                 Empowering institutions and organizations with essential
                 cybersecurity knowledge and skills.
               </p>
             </div>
-            <div
-              className="absolute inset-0 flex items-center justify-center blur-md sm:static sm:w-full sm:mx-auto sm:flex sm:blur-md sm:justify-center sm:items-center opacity-70 sm:opacity-100"
-            >
+            <div className="flex-1 absolute inset-0 flex items-center justify-center blur-md sm:static sm:mx-auto sm:flex sm:blur-md sm:justify-center sm:items-center opacity-70 sm:opacity-100">
               <svg
                 width="200"
                 height="200"
@@ -33,7 +33,7 @@ function AboutUs() {
                 />
               </svg>
             </div>
-            <div className="hidden lg:block shadow-[0_22px_6px_-6px_rgba(0,0,0,0.2)]">
+            <div className="flex-1 hidden lg:block shadow-[0_22px_6px_-6px_rgba(0,0,0,0.2)]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="360"
@@ -540,7 +540,11 @@ function AboutUs() {
             </p>
           </div>
           <div className="flex justify-center lg:col-span-1">
-            <img src="/images/logo.png" alt="Security Shield" className="w-[80%] min-[425px]:w-80 lg:w-full mx-auto h-auto block" />
+            <img
+              src="/images/logo.png"
+              alt="Security Shield"
+              className="w-[80%] min-[425px]:w-80 lg:w-full mx-auto h-auto block"
+            />
           </div>
         </section>
 
