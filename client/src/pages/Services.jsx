@@ -35,10 +35,10 @@ const ServiceCard = ({ icon, title }) => (
         className={`${icon} text-2xl text-[var(--clr-accent-900)] transition-colors duration-500 group-hover:text-white`}
       ></i>
     </div>
-    <h3 className="text-xl font-bold mb-4 transition-colors duration-500 group-hover:text-white">
+    <h3 className="text-2xl font-bold mb-4 transition-colors duration-500 group-hover:text-white">
       {title}
     </h3>
-    <p className="text-gray-600 transition-colors duration-500 group-hover:text-white">
+    <p className="text-lg text-gray-600 transition-colors duration-500 group-hover:text-white">
       We provide tailored solutions to enhance educational and government
       sectors.
     </p>
