@@ -1,8 +1,7 @@
 import { Routes,Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
-import RoleBasedDashboard from "../components/Auth/RoleBasedDashboard";
-import MyCourses from "../pages/MyCourses";
+import { RoleBasedDashboard,RoleBasedMycourses } from "../components/Auth/RoleBasedComponent";
 import Profile from "../pages/Profile";
 import Watch from "../pages/Watch";
 import CreateCourse from "../pages/CreateCourse";
@@ -18,9 +17,9 @@ function DashboardRoutes() {
                 <Route element={<DashboardLayout />}>
                     <Route path="dashboard" element={<RoleBasedDashboard />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route path="mycourses" element={<RoleBasedMycourses />} />
 
                     <Route element={<ProtectedRoutes roles={['student']} />}>
-                        <Route path="mycourses" element={<MyCourses />} />
                         <Route path="watch" element={<Watch />} />
                     </Route>
 
@@ -35,4 +34,4 @@ function DashboardRoutes() {
     )
 }
 
-export default DashboardRoutes
+export default DashboardRoutes;

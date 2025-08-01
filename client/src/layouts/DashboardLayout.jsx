@@ -7,9 +7,9 @@ import Dashnav from '../components/UI/components/Dashnav';
  
 function DashboardLayout() {
   return (
-    <div className="flex">
+    <div className="flex relative add-new--lesson">
         <Sidebar/>
-        <div className='bg-[var(--clr-accent-100)] flex-1 text-[var(--clr-primary-900)] ml-64'>
+        <div className=' flex-1 text-[var(--clr-primary-900)] ml-64'>
           <Dashnav/>
           <main className=''>
             <Outlet/>
