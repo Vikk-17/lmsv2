@@ -129,8 +129,8 @@
     color: var(--clr-accent-900);
     letter-spacing: 1px;
   }
-=======
-@layer utilities{
+
+  @layer utilities{
   .container{
     @apply  max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8
   }
@@ -292,4 +292,5 @@
 }
 
 @layer components {
+}
 }
