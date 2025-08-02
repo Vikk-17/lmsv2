@@ -573,7 +573,7 @@ function AboutUs() {
               <h3 className="font-satoshi text-white text-4xl font-bold mb-6">
                 Our Fun Fact
               </h3>
-              <p className="font-satoshi text-white text-lg leading-relaxed">
+              <p className="font-satoshi text-white text-lg leading-normal">
                 Each milestone shows our commitment to cybersecurity, social,
                 and learning, and resource development across the globe.
               </p>
