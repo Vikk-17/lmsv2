@@ -91,6 +91,26 @@ export const getAllCourses = async (req, res) => {
   }
 };
 
+export const getCourseDetailsById = async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    if (!courseId)
+      return res.status(404).json({ message: "No Course Id Found" });
+
+    const courseDetails = await Course.findById(courseId);
+    if (!courseDetails)
+      return res.status(404).json({ message: "No Course Found with this id" });
+    return res
+      .status(200)
+      .json({ message: "Course Fetched Sucessfully", courseDetails });
+  } catch (error) {
+    console.error("Error Getting Course:");
+    res
+      .status(500)
+      .json({ message: "Error Getting Course Details By id", error });
+  }
+};
+
 export const createCourse = async (req, res) => {
   try {
     const courseData = req.body;
