@@ -34,7 +34,7 @@ function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <HiX className="text-[var(--clr-accent-900)]" />
+              <HiX className="text-[var(--clr-primary-900)]/30" />
             ) : (
               <HiMenuAlt3 />
             )}

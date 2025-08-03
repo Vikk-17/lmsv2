@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Boska";
-  src: url("../assets/fonts/Boska-VariableItalic.ttf") format("truetype");
+  src: url("../assets/fonts/Boska-VariableItalic.ttf") format ("truetype");
   font-weight: 200 900;
   font-display: swap;
   font-style: normal;
@@ -17,7 +17,7 @@
 
 @theme {
   /* --clr-primary-900: #0a0f1c; */
-  --clr-primary-900: #090E23;
+  --clr-primary-900: #090e23;
   --clr-primary-800: #121721;
   --clr-primary-400: #666666;
   --clr-primary-200: #9d9fa4;
@@ -29,29 +29,29 @@
   --clr-accent-100: #f2f4ff;
   --clr-neutral-100: #ffffff;
 
-  --font-primary: "Ubuntu", sans-serif;
-  --font-heading: "Ubuntu", sans-serif;
-  
   --font-boska: "Boska", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
 
-  --text-heading-h1: 3rem;
-  --text-heading-h2: 2.5rem;
-  --text-heading-h3: 2.062rem;
-  --text-heading-h4: 1.75rem;
-  --text-heading-h5: 1.438rem;
-  --text-heading-h6: 1.188rem;
-  --text-tag: 0.812rem;
+  --text-h1: clamp(2.5rem, 6vw, 3.8rem); /* ~61.04px */
+  --text-h2: clamp(1.875rem, 4vw, 3rem); /* ~48.83px */
+  --text-h3: clamp(1.6rem, 4vw, 2.4rem); /* ~39.06px */
+  --text-h4: clamp(1.3rem, 3.5vw, 2rem); /* ~31.25px */
+  --text-h5: clamp(1.4rem, 3vw, 1.6rem); /* ~25px */
+  --text-h6: clamp(1rem, 2.5vw, 1.25rem); /* ~20px */
+
+  --text-lg: clamp(1rem, 2vw, 1.125rem); /* ~18px */
+  --text-md: clamp(0.95rem, 1.8vw, 1rem); /* ~16px */
+  --text-sm: clamp(0.85rem, 1.5vw, 0.875rem); /* ~14px */
+  --text-tag: clamp(0.8rem, 1.5vw, 0.9rem); /* ~12.8px */
 }
 
 @layer base {
   body {
     color: var(--clr-neutral-100);
-    font-family: var(--font-primary);
-    font-size: var(--text-base);
-    font-weight: 400;
+    font-family: var(--font-satoshi);
+    font-size: var(--text-lg);
+    font-weight: 500;
     line-height: 1.5;
-    font-weight: 400;
   }
   h1,
   h2,
@@ -59,30 +59,30 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1.25;
     color: var(--clr-primary-900);
   }
   p {
-    @apply mt-0.5 mb-2;
+    @apply mt-0.5 mb-2 ;
   }
   h1 {
-    @apply text-heading-h1;
+    @apply text-h1;
   }
   h2 {
-    @apply text-heading-h2;
+    @apply text-h2;
   }
   h3 {
-    @apply text-heading-h3;
+    @apply text-h3;
   }
   h4 {
-    @apply text-heading-h4;
+    @apply text-h4;
   }
   h5 {
-    @apply text-heading-h5;
+    @apply text-h5;
   }
   h6 {
-    @apply text-heading-h6;
+    @apply text-h6;
   }
 
   button {
@@ -123,40 +123,41 @@
     border-color: #4f46e5;
     color: #4f46e5;
   }
-  .sm-title{
+  .sm-title {
     font-family: var(--font-boska);
+    font-style: italic;
     font-weight: 900;
     color: var(--clr-accent-900);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
-  @layer utilities{
-  .container{
-    @apply  max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8
-  }
-  /* .sidebar-link.active {
+  @layer utilities {
+    .container {
+      @apply max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    /* .sidebar-link.active {
     background-color: rgba(79, 70, 229, 0.1);
     color: #4f46e5;
     border-left: 3px solid #4f46e5;
   } */
-  .sidebar-link:hover:not(.active) {
+    .sidebar-link:hover:not(.active) {
       background-color: rgba(79, 70, 229, 0.05);
-  }
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
-  }
-  .custom-checkbox {
+    }
+    .custom-checkbox {
       position: relative;
       cursor: pointer;
-  }
-  .custom-checkbox input {
+    }
+    .custom-checkbox input {
       position: absolute;
       opacity: 0;
       cursor: pointer;
-  }
-  .checkmark {
+    }
+    .checkmark {
       position: absolute;
       top: 0;
       left: 0;
@@ -166,23 +167,23 @@
       border: 2px solid #d1d5db;
       border-radius: 4px;
       transition: all 0.2s ease;
-  }
-  .custom-checkbox:hover input ~ .checkmark {
+    }
+    .custom-checkbox:hover input ~ .checkmark {
       border-color: #4f46e5;
-  }
-  .custom-checkbox input:checked ~ .checkmark {
+    }
+    .custom-checkbox input:checked ~ .checkmark {
       background-color: #4f46e5;
       border-color: #4f46e5;
-  }
-  .checkmark:after {
+    }
+    .checkmark:after {
       content: "";
       position: absolute;
       display: none;
-  }
-  .custom-checkbox input:checked ~ .checkmark:after {
+    }
+    .custom-checkbox input:checked ~ .checkmark:after {
       display: block;
-  }
-  .custom-checkbox .checkmark:after {
+    }
+    .custom-checkbox .checkmark:after {
       left: 6px;
       top: 2px;
       width: 5px;
@@ -190,12 +191,12 @@
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
-  }
-  .progress-step {
-          position: relative;
-  }
-  .progress-step:not(:last-child):after {
-      content: '';
+    }
+    .progress-step {
+      position: relative;
+    }
+    .progress-step:not(:last-child):after {
+      content: "";
       position: absolute;
       top: 14px;
       left: calc(50% + 20px);
@@ -203,53 +204,51 @@
       height: 2px;
       background-color: #e5e7eb;
       z-index: 0;
-  }
-  
-  .progress-step.completed:not(:last-child):after {
+    }
+
+    .progress-step.completed:not(:last-child):after {
       background-color: #4f46e5;
-  }
-  
-  .progress-step-number {
+    }
+
+    .progress-step-number {
       position: relative;
       z-index: 1;
       transition: all 0.3s ease;
-  }
-  .progress-step.completed .progress-step-number {
+    }
+    .progress-step.completed .progress-step-number {
       background-color: #4f46e5;
       color: white;
-      
-  }
-  .progress-step.active .progress-step-number {
+    }
+    .progress-step.active .progress-step-number {
       border-color: #4f46e5;
       color: #4f46e5;
-  }
+    }
 
-  
-  .file-upload-container {
+    .file-upload-container {
       border: 2px dashed #d1d5db;
       transition: all 0.3s ease;
-  }
-  .file-upload-container:hover {
+    }
+    .file-upload-container:hover {
       border-color: #4f46e5;
-  }
-  .file-upload-input {
+    }
+    .file-upload-input {
       opacity: 0;
       position: absolute;
       width: 100%;
       height: 100%;
       cursor: pointer;
-  }
-  .quiz-item {
+    }
+    .quiz-item {
       transition: all 0.2s ease;
-  }
-  .quiz-item:hover {
+    }
+    .quiz-item:hover {
       background-color: rgba(79, 70, 229, 0.05);
-  }
-  .question-type-selector {
+    }
+    .question-type-selector {
       display: inline-block;
       position: relative;
-  }
-  .question-type-dropdown {
+    }
+    .question-type-dropdown {
       position: absolute;
       top: 100%;
       left: 0;
@@ -257,40 +256,40 @@
       background-color: white;
       border: 1px solid #e5e7eb;
       border-radius: 8px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 10;
       display: none;
-  }
-  .question-type-selector.open .question-type-dropdown {
+    }
+    .question-type-selector.open .question-type-dropdown {
       display: block;
-  }
-  .question-type-option {
+    }
+    .question-type-option {
       padding: 10px 12px;
       cursor: pointer;
       transition: background-color 0.2s;
-  }
-  .question-type-option:hover {
+    }
+    .question-type-option:hover {
       background-color: #f3f4f6;
-  }
-  .question-type-option:first-child {
+    }
+    .question-type-option:first-child {
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-  }
-  .question-type-option:last-child {
+    }
+    .question-type-option:last-child {
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
+    }
+    .course-publish select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: none;
+      padding-right: 1rem;
+      border: 1px solid #ccc;
+    }
   }
-  .course-publish select {
-      -webkit-appearance: none;  
-      -moz-appearance: none;     
-      appearance: none;          
-      background: none;          
-      padding-right: 1rem;       
-      border: 1px solid #ccc;    
-}
 
-}
-
-@layer components {
-}
+  @layer components {
+  }
 }

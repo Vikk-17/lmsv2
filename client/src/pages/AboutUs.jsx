@@ -9,10 +9,10 @@ function AboutUs() {
         <div className="max-w-7xl mx-auto w-full pb-3 p-8 sm:p-8 lg:py-0">
           <div className="relative flex items-center justify-between">
             <div className="flex-1 z-1">
-              <h1 className="text-4xl sm:text-5xl text-white font-bold mb-3 sm:mb-6">
+              <h1 className="text-white mb-3">
                 About Us
               </h1>
-              <p className="text-lg font-satoshi font-medium  leading-normal">
+              <p className="">
                 Empowering institutions and organizations with essential
                 cybersecurity knowledge and skills.
               </p>
@@ -515,16 +515,16 @@ function AboutUs() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="mb-4">
-          <span className="sm-title text-lg">About Our Agency &rarr;</span>
+          <span className="sm-title">About Our Agency &rarr;</span>
         </div>
 
         {/* Introduction Section */}
         <section className="grid lg:grid-cols-3 gap-10 lg:gap-16 items-center mb-10">
           <div className="lg:col-span-2">
-            <h2 className="text-4xl font-bold mb-6 leading-tight">
+            <h2 className="mb-6">
               GIR Technologies — Teaching Cyber Skills, Building Safer Worlds
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+            <p className="text-gray-600 leading-relaxed mb-6">
               At GIR Technologies, we specialize in delivering cutting-edge
               cybersecurity solutions and personalized education for IT
               companies, universities, and organizations. Our mission is to
@@ -570,10 +570,10 @@ function AboutUs() {
         <section className="bg-[var(--clr-accent-900)] text-white rounded-2xl p-12 mb-16">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="font-satoshi text-white text-4xl font-bold mb-6">
+              <h3 className="text-white text-4xl mb-6">
                 Our Fun Fact
               </h3>
-              <p className="font-satoshi text-white text-lg leading-normal">
+              <p className="text-white text-lg leading-relaxed">
                 Each milestone shows our commitment to cybersecurity, social,
                 and learning, and resource development across the globe.
               </p>
@@ -602,7 +602,7 @@ function AboutUs() {
         {/* CEO Section */}
         <section className="bg- text-[var(--clr-primary-900)] rounded-2xl sm:border-2 sm:border-[var(--clr-accent-900)] sm:p-12">
           <div className="mb-4">
-            <span className="text-lg sm-title">
+            <span className="sm-title">
               Chief Executive Officer &rarr;
             </span>
           </div>
@@ -615,7 +615,7 @@ function AboutUs() {
               />
             </div>
             <div className="lg:col-span-2">
-              <h3 className="text-3xl font-bold mb-6">
+              <h3 className="mb-6">
                 GIR Technologies — About Srujan Atluri
               </h3>
               <div className="space-y-4 leading-relaxed">
@@ -654,7 +654,7 @@ function AboutUs() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <div className="text-sm">SRUJAN ATLURI</div>
+                  <div className="text-lg font-bold">SRUJAN ATLURI</div>
                   <div className="text-sm">CEO of GIR Technology</div>
                 </div>
               </div>
