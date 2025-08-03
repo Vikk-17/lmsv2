@@ -4,9 +4,14 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
     },
+    enrolledCourses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+      },
+    ],
     googleId: {
       type: String,
       unique: true,
@@ -26,6 +31,11 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: false,
+    },
+    provider: {
+      type: String,
+      enum: ["google", "local"],
+      default: "local",
     },
     role: {
       type: String,

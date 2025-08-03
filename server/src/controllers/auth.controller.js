@@ -119,8 +119,13 @@ export const signupOtpValidate = async (req, res) => {
 export const googleLoginController = async (req, res) => {
   try {
     const user = req.user;
-    if (!user)
-      return res.status(401).json({ message: "Authentication failed" });
+
+    // If user creation failed or blocked (e.g. already signed up via normal login)
+    if (!user) {
+      return res.redirect(
+        "http://localhost:5173/login?error=google_login_blocked"
+      );
+    }
 
     const token = await signAccessToken({
       userId: user._id,
@@ -129,7 +134,6 @@ export const googleLoginController = async (req, res) => {
       role: user.role,
     });
 
-    // Set cookie like normal login
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
@@ -137,13 +141,42 @@ export const googleLoginController = async (req, res) => {
       maxAge: 1 * 60 * 1000,
     });
 
-    res.redirect(`http://localhost:3000/auth/success?token=${token}`);
-    // or: res.status(200).json({ message: "Google Login Successful", token });
+    res.redirect(`http://localhost:5173/auth/success?token=${token}`);
   } catch (error) {
     console.error("Google Login Error:", error);
     res.status(500).json({ message: "Google login failed", error });
   }
 };
+
+// export const googleLoginController = async (req, res) => {
+//   try {
+//     const user = req.user;
+//     if (!user)
+//       return res.status(401).json({ message: "Authentication failed" });
+
+//     const token = await signAccessToken({
+//       userId: user._id,
+//       name: user.name,
+//       email: user.email,
+//       role: user.role,
+//     });
+
+//     // Set cookie like normal login
+//     res.cookie("token", token, {
+//       httpOnly: true,
+//       secure: true,
+//       sameSite: "None",
+//       maxAge: 1 * 60 * 1000,
+//     });
+
+//     res.redirect(`http://localhost:5173/auth/success?token=${token}`);
+//     // or:
+//     // res.status(200).json({ message: "Google Login Successful", token });
+//   } catch (error) {
+//     console.error("Google Login Error:", error);
+//     res.status(500).json({ message: "Google login failed", error });
+//   }
+// };
 
 export const logout = async (req, res) => {
   try {

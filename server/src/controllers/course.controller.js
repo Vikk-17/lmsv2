@@ -1,5 +1,6 @@
 import Course from "../models/course.model.js";
 import Rating from "../models/rating.model.js";
+import User from "../models/user.model.js";
 import {
   insertIntoCourse,
   findAllCourses,
@@ -7,36 +8,6 @@ import {
   updateCourseById,
   deleteCourseById,
 } from "../services/db/course.service.js";
-
-// export const getAllCourses = async (req, res) => {
-//   try {
-//     const page = parseInt(req.query.page) || 1;
-//     const limit = parseInt(req.query.limit) || 3;
-//     const skip = (page - 1) * limit;
-
-//     const totalCourses = await Course.countDocuments();
-//     const courses = await Course.find()
-//       .skip(skip)
-//       .limit(limit)
-//       .sort({ createdAt: -1 });
-
-//     const totalPages = Math.ceil(totalCourses / limit);
-
-//     return res.status(200).json({
-//       courses,
-//       totalCourses,
-//       totalPages,
-//       currentPage: page,
-//       limit,
-//     });
-//   } catch (error) {
-//     console.error("🔥 Error in getAllCourses:", error); // ✅ add this
-//     return res.status(500).json({
-//       message: "Internal server error",
-//       error: error.message || error,
-//     });
-//   }
-// };
 
 export const getAllCourses = async (req, res) => {
   try {
@@ -152,5 +123,90 @@ export const deleteCourse = async (req, res) => {
     res.status(200).json(deletedCourse);
   } catch (error) {
     res.status(500).json({ message: "internal error", error });
+  }
+};
+
+export const enrollCourse = async (req, res) => {
+  const { studentId, courseId } = req.body;
+
+  if (!studentId || !courseId) {
+    return res
+      .status(400)
+      .json({ message: "Enter Required Fields: studentId, courseId" });
+  }
+
+  try {
+    const student = await User.findById(studentId);
+    if (!student) return res.status(404).json({ message: "No Student Found" });
+
+    const course = await Course.findById(courseId);
+    if (!course) return res.status(404).json({ message: "No Course Found" });
+    // ✅ Check using .includes on the course.studentsEnrolled array
+    const alreadyEnrolled = course.studentsEnrolled.includes(studentId);
+    if (alreadyEnrolled) {
+      return res.status(400).json({ message: "Already Enrolled" });
+    }
+
+    // ✅ Push values
+    student.enrolledCourses.push(courseId);
+    course.studentsEnrolled.push(studentId);
+
+    // ✅ Save both
+    await student.save();
+    await course.save();
+
+    return res.status(200).json({ message: "Course Added Successfully" });
+  } catch (error) {
+    console.error("Error enrolling student:", error);
+    return res.status(500).json({
+      message: "Enroll Error",
+      error: error.message,
+    });
+  }
+};
+
+export const getEnrolledCourses = async (req, res) => {
+  const { studentId } = req.params;
+  if (!studentId) {
+    return res.status(400).json({ message: "No Student Id provided" });
+  }
+
+  try {
+    const student = await User.findById(studentId).populate("enrolledCourses");
+    if (!student) return res.status(404).json({ message: "No Student Found" });
+
+    return res.status(200).json({
+      message: "Courses fetched successfully",
+      enrolledCourses: student.enrolledCourses,
+    });
+  } catch (error) {
+    console.error("Error fetching enrolled courses:", error);
+    return res.status(500).json({
+      message: "Error fetching enrolled courses",
+      error: error.message,
+    });
+  }
+};
+
+export const getEnrolledStudents = async (req, res) => {
+  const { courseId } = req.params;
+  if (!courseId) {
+    return res.status(400).json({ message: "No Course Id provided" });
+  }
+
+  try {
+    const course = await Course.findById(courseId).populate("studentsEnrolled");
+    if (!course) return res.status(404).json({ message: "No Course Found" });
+
+    return res.status(200).json({
+      message: "Enrolled students fetched successfully",
+      enrolledStudents: course.studentsEnrolled,
+    });
+  } catch (error) {
+    console.error("Error fetching enrolled students:", error);
+    return res.status(500).json({
+      message: "Error fetching enrolled students",
+      error: error.message,
+    });
   }
 };
