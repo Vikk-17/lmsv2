@@ -38,6 +38,12 @@ const courseSchema = new Schema(
       required: true,
       trim: true,
     },
+    studentsEnrolled: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
 
     // Optional subtitle for the course - trimmed string
     subtitle: {

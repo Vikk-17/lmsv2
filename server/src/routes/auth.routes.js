@@ -28,6 +28,7 @@ router.get(
 );
 
 // Callback route
+
 router.get(
   "/google/callback",
   passport.authenticate("google", {

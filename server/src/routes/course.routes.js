@@ -6,6 +6,10 @@ import {
   getCourse,
   updateCourse,
   deleteCourse,
+  getCourseDetailsById,
+  enrollCourse,
+  getEnrolledCourses,
+  getEnrolledStudents,
 } from "../controllers/course.controller.js";
 const router = express.Router();
 
@@ -15,5 +19,9 @@ router
   .get(getCourse)
   .put(updateCourse)
   .delete(deleteCourse);
+router.get("/getCourseById/:courseId", getCourseDetailsById);
 router.use("/:courseid/modules", moduleRoutes);
+router.get("/get-enrolled-courses/:studentId", getEnrolledCourses);
+router.get("/get-enrolled-students/:courseId", getEnrolledStudents);
+router.post("/enroll-now", enrollCourse);
 export default router;
