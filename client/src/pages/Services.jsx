@@ -137,7 +137,7 @@ function Services() {
 
       {/* Banner Section */}
       <section className="bg-[#455CE9] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full pb-3 p-8 sm:p-8 lg:py-0">
+        <div className="sec-wrap max-sm:pt-8 max-sm:pb-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-1 z-1">
               <h1 className="text-white mb-3">
@@ -281,7 +281,7 @@ function Services() {
 
       {/* our Organisation */}
       <section className="py-8 sm:py-16 font-satoshi font-medium">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="sec-wrap">
           <div className="mb-13 pb-8 border-b-2 border-[var(--clr-accent-200)]">
             <div className="mb-4 ">
               <span className="sm-title">Our Organizations &rarr;</span>
@@ -314,7 +314,7 @@ function Services() {
 
       {/* our institute */}
       <section className="pt-8 pb-16 md:py-16 font-satoshi font-medium ">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="sec-wrap">
           <div className="mb-13 pb-8 border-b-2 border-[var(--clr-accent-200)]">
             <div className="mb-4 ">
               <span className="sm-title text-lg">Our Institutions &rarr;</span>
