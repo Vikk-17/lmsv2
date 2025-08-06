@@ -94,6 +94,9 @@
   .container {
     @apply max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8;
   }
+  .sec-wrap{
+    @apply max-w-[84rem] mx-auto px-8;
+  }
   .progress-step {
     position: relative;
   }
@@ -293,3 +296,20 @@
   @layer components {
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 20s linear infinite;
+  gap: 4rem; /* Adjust spacing between logos */
+}
+
