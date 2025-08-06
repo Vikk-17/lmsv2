@@ -5,7 +5,7 @@ function AboutUs() {
   return (
     <>
       {/* Heading Section */}
-      <section className="bg-[#455CE9] text-white overflow-hidden">
+      <section className="bg-[#455CE9] pt-20 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto w-full pt-8 p-4 sm:p-8 lg:py-0">
           <div className="relative flex items-center justify-between">
             <div className="flex-1 z-1">
