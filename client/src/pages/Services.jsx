@@ -1,6 +1,6 @@
 import React from "react";
 
-// Our Institute Section Card Data
+// Our Organisation Section Card Data
 const services = [
   {
     icon: "ri-shield-check-line",
@@ -35,17 +35,17 @@ const ServiceCard = ({ icon, title }) => (
         className={`${icon} text-2xl text-[var(--clr-accent-900)] transition-colors duration-500 group-hover:text-white`}
       ></i>
     </div>
-    <h3 className="text-2xl font-bold mb-4 transition-colors duration-500 group-hover:text-white">
+    <h5 className="mb-4 transition-colors duration-500 group-hover:text-white">
       {title}
-    </h3>
-    <p className="text-lg text-gray-600 transition-colors duration-500 group-hover:text-white">
+    </h5>
+    <p className="text-gray-600 transition-colors duration-500 group-hover:text-white">
       We provide tailored solutions to enhance educational and government
       sectors.
     </p>
   </div>
 );
 
-// Our Organisation Section Card Data
+// Our Institute Section Card Data
 const cards = [
   {
     image: "./images/workshop_img.jpg",
@@ -97,7 +97,7 @@ const Card = ({ image, title, description, tags }) => (
       <img src={image} alt={title} className="w-full h-full object-cover" />
     </div>
     <div>
-      <h2 className="font-satoshi font-bold text-2xl mb-3">{title}</h2>
+      <h5 className="mb-3">{title}</h5>
       <p className="text-lg text-gray-600 mb-6">{description}</p>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, idx) => (
@@ -137,13 +137,13 @@ function Services() {
 
       {/* Banner Section */}
       <section className="bg-[#455CE9] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full pb-3 p-8 sm:p-8 lg:py-0">
+        <div className="sec-wrap max-sm:pt-8 max-sm:pb-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-1 z-1">
-              <h1 className="text-4xl sm:text-5xl text-white font-bold mb-3 sm:mb-6">
+              <h1 className="text-white mb-3">
                 Our Services
               </h1>
-              <p className="text-lg font-satoshi font-medium  leading-normal">
+              <p className="">
                 Empowering institutions and organizations with essential
                 cybersecurity knowledge and skills.
               </p>
@@ -281,19 +281,19 @@ function Services() {
 
       {/* our Organisation */}
       <section className="py-8 sm:py-16 font-satoshi font-medium">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="sec-wrap">
           <div className="mb-13 pb-8 border-b-2 border-[var(--clr-accent-200)]">
             <div className="mb-4 ">
-              <span className="sm-title text-lg">Our Organizations &rarr;</span>
+              <span className="sm-title">Our Organizations &rarr;</span>
             </div>
             <div className="grid lg:grid-cols-2 lg:gap-12 items-center">
               <div>
-                <h2 className="text-3xl sm:text-5xl sm:leading-tight font-satoshi font-black mb-4">
+                <h2 className="font-black mb-4">
                   Empowering Institutions for a Smarter Future
                 </h2>
               </div>
               <div>
-                <p className=" text-gray-600 text-lg leading-relaxed">
+                <p className=" text-gray-600 leading-relaxed">
                   We provide tailored solutions to enhance operational
                   efficiency and foster sustainable growth in educational and
                   government sectors. We provide tailored solutions and
@@ -313,15 +313,15 @@ function Services() {
       </section>
 
       {/* our institute */}
-      <section className="pt-8 pb-16 sm:py-16 font-satoshi font-medium ">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="pt-8 pb-16 md:py-16 font-satoshi font-medium ">
+        <div className="sec-wrap">
           <div className="mb-13 pb-8 border-b-2 border-[var(--clr-accent-200)]">
             <div className="mb-4 ">
               <span className="sm-title text-lg">Our Institutions &rarr;</span>
             </div>
             <div className="grid lg:grid-cols-2 lg:gap-12 items-center">
               <div>
-                <h2 className="text-3xl sm:text-5xl sm:leading-tight font-satoshi font-black mb-4">
+                <h2 className="leading-tight font-satoshi font-black mb-4">
                   Empowering Institutions for a Smarter Future
                 </h2>
               </div>
