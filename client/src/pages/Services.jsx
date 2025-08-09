@@ -288,7 +288,7 @@ function Services() {
             </div>
             <div className="grid lg:grid-cols-2 lg:gap-12 items-center">
               <div>
-                <h2 className="font-black mb-4">
+                <h2 className=" mb-4">
                   Empowering Institutions for a Smarter Future
                 </h2>
               </div>
@@ -321,7 +321,7 @@ function Services() {
             </div>
             <div className="grid lg:grid-cols-2 lg:gap-12 items-center">
               <div>
-                <h2 className="leading-tight font-satoshi font-black mb-4">
+                <h2 className=" mb-4">
                   Empowering Institutions for a Smarter Future
                 </h2>
               </div>
