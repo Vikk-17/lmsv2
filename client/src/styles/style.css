@@ -90,6 +90,14 @@
   }
 }
 
+.slick-track {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px;
+  margin: 0;
+}
+
+
 @layer utilities {
   .container {
     @apply max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8;
@@ -312,4 +320,18 @@
   animation: marquee 20s linear infinite;
   gap: 4rem; /* Adjust spacing between logos */
 }
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
 

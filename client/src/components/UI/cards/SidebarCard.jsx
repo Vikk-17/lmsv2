@@ -40,7 +40,7 @@ const SidebarCard = ({ courseData }) => {
         {/* Video Modal */}
         {showVideo && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
-            <div className="relative w-full max-w-4xl rounded-lg overflow-hidden">
+            <div className="relative w-full max-w-4xl h-full rounded-lg overflow-hidden">
               <button
                 onClick={() => setShowVideo(false)}
                 className="absolute -top-10 right-0 text-white text-3xl z-50"

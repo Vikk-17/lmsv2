@@ -6,7 +6,7 @@ function Recommended() {
   return (
         <div className="bg-white rounded shadow-sm overflow-hidden">
             <div className="relative h-40">
-                <img src="https://readdy.ai/api/search-image?query=Python%20programming%20course%20with%20code%20examples%20and%20data%20visualization%2C%20professional%20course%20thumbnail&width=300&height=160&seq=6&orientation=landscape" alt="Python Course" className="w-full h-full object-cover object-top"/>
+                <img src="./images/recom_course.jpg" className="w-full h-full object-cover object-top"/>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
                     <h6 className="text-white font-medium">Python for Data Science & Analytics</h6>
                 </div>

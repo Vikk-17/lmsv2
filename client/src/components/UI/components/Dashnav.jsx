@@ -1,53 +1,73 @@
-import React from 'react'
+import React from "react";
+import { Menu } from "lucide-react";
 
-function Dashnav() {
+function Dashnav({ setSidebarOpen }) {
   return (
-        <header class="bg-white border-b border-gray-200 sticky top-0 z-12">
-                <div class="flex items-center justify-between px-6 py-3">
-                    <div class="flex items-center space-x-4">
-                        <button type="button" class="text-gray-500 hover:text-gray-700">
-                            <div class="w-6 h-6 flex items-center justify-center">
-                                <i class="ri-menu-line"></i>
-                            </div>
-                        </button>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <div class="w-4 h-4 flex items-center justify-center text-gray-400">
-                                    <i class="ri-search-line"></i>
-                                </div>
-                            </div>
-                            <input type="text" class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-64 pl-10 p-2.5 focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search..."/>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <button type="button" class="relative p-1 text-gray-500 hover:text-gray-700 rounded-full">
-                            <div class="w-6 h-6 flex items-center justify-center">
-                                <i class="ri-notification-3-line"></i>
-                            </div>
-                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
-                        </button>
-                        <button type="button" class="relative p-1 text-gray-500 hover:text-gray-700 rounded-full">
-                            <div class="w-6 h-6 flex items-center justify-center">
-                                <i class="ri-mail-line"></i>
-                            </div>
-                        </button>
-                        <div class="border-l border-gray-200 h-6 mx-2"></div>
-                        <div class="flex items-center">
-                            <button type="button" class="flex items-center space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-gray-100 overflow-hidden">
-                                    <img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20teacher%20with%20glasses%2C%20friendly%20smile%2C%20high%20quality%20professional%20photo%2C%20clean%20background&width=100&height=100&seq=1&orientation=squarish" alt="Profile" class="w-full h-full object-cover"/>
-                                </div>
-                                <span class="text-sm font-medium text-gray-700">David</span>
-                                <div class="w-4 h-4 flex items-center justify-center text-gray-500">
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-        </header>
-  )
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-12">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3">
+        
+        {/* Left side */}
+        <div className="flex items-center gap-3">
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            className="sm:hidden p-2 rounded-md hover:bg-gray-100"
+          >
+            <Menu className="w-6 h-6 text-gray-800" />
+          </button>
+
+          {/* Search Bar */}
+          <div className="hidden sm:flex items-center space-x-2 border border-[var(--clr-accent-400)] text-gray-400 text-sm rounded-full px-3 py-2 w-64">
+            <i className="ri-search-line text-lg font-bold"></i>
+            <input
+              type="text"
+              className="text-md bg-transparent outline-none flex-1"
+              placeholder="Search..."
+            />
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            className="relative p-1 text-white bg-[var(--clr-accent-900)] hover:bg-[var(--clr-primary-900)] rounded-full transition-colors duration-300 ease-in-out"
+          >
+            <div className="w-6 h-6 flex items-center justify-center">
+              <i className="ri-notification-3-line"></i>
+            </div>
+            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
+          </button>
+
+          <button
+            type="button"
+            className="relative p-1 text-white bg-[var(--clr-accent-900)] hover:bg-[var(--clr-primary-900)] rounded-full transition-colors duration-300 ease-in-out"
+          >
+            <div className="w-6 h-6 flex items-center justify-center">
+              <i className="ri-mail-line"></i>
+            </div>
+          </button>
+
+          <div className="border-1 border-gray-300 h-8 rounded-full"></div>
+
+          <button type="button" className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-full overflow-hidden">
+              <img
+                src="./images/profile.jpg"
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <span className="text-md font-bold text-[var(--clr-primary-900)]">
+              David
+            </span>
+            <i className="ri-arrow-down-s-line text-[var(--clr-primary-900)]"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 }
 
-export default Dashnav
+export default Dashnav;
