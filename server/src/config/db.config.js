@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 dotenv.config({ path: "../.env" });
 
 const DB_CONFIG = {
@@ -14,6 +13,7 @@ const dbConnect = async () => {
       `\x1b[45m\x1b[37m%s\x1b[0m`,
       ` 😄 ✅ Database Connected Successfully `
     );
+    // await Course.syncIndexes();
   } catch (error) {
     console.log(
       `\x1b[41m\x1b[37m%s\x1b[0m`,

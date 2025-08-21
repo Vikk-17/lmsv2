@@ -1,7 +1,7 @@
 import {registerUser } from "../api/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {toast,Toaster} from 'react-hot-toast';
+import {toast} from 'react-hot-toast';
 import useAuthStore from "../store/authStore";
 
 export const useAuth = ()=>{

@@ -1,52 +1,33 @@
 import cloudinary from "cloudinary";
 import dotenv from "dotenv"
 
-dotenv.config({
-  path: ("../../../../.env"),
-});
 
+export const uploadMediaFiles = async (req)=>{
+    const files = req.files.videos;
+    console.log(files);
+    if (!files || files.lenght === 0) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
 
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
+    const filesArray = Array.isArray(files) ? files : [files];
 
-const uploadMedia = async (filePath) => {
-  try {
-    const result = await cloudinary.v2.uploader.upload(filePath, {
-      resource_type: "auto",
-      eager: [{
-          // 1080p transformation
-          transformation: [
-              {width: 1920, height: 1080, crop: "limit"},
-              {quality: "auto", fetch_format: "auto"}
-          ]
-      }, {
-          // 720p transformation
-          transformation: [
-              {width: 1280, height: 720, crop: "limit"},
-              {quality: "auto", fetch_format: "auto"}
-          ]
-      }, {
-          // 480p transformation
-          transformation: [
-              {width: 854, height: 480, crop: "limit"},
-              {quality: "auto", fetch_format: "auto"}
-          ]
-      }],
-      eager_async: true,
-      overwrite: false, // default for video
+    const uploadPromises = filesArray.map((file)=>{
+      const base64String = `data:${file.mimetype};base64,${file.data.toString(
+      "base64"
+      )}`;
+
+      return cloudinary.uploader.upload(base64String, {
+        resource_type: "auto",
+        folder: "uploads", 
+      });
     });
-    console.log(result);
-    return result;
-  } catch (err) {
-    console.log(err);
-    throw new Error("Can't upload Media");
-  }
-};
+    const results = await Promise.all(uploadPromises);
+    return results;
+}
 
-const deleteMedia = async (publicId) => {
+
+
+export const deleteMedia = async (publicId) => {
   try {
     const result = await cloudinary.v2.uploader.destroy(publicId, {
       resource_type: "video",
@@ -59,8 +40,6 @@ const deleteMedia = async (publicId) => {
   }
 };
 
-// testing
-// uploadMedia("trial.mp4");
-// deleteMedia("ym4tab358kqvx0dislla");
 
-module.exports = { uploadMedia, deleteMedia };
+
+

@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import {toast} from 'react-hot-toast';
 import useAuthStore from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 function Signup() {
@@ -65,7 +65,6 @@ function Signup() {
           </div>
         </div>
       </section>
-      <Toaster position='bottom-left' />
     </>
   )
 }

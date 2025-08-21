@@ -19,6 +19,11 @@ export const findAllCourses = async (page,limit,skip) => {
   const totalPages = Math.ceil(total / limit);
   return {courses,currentpage: page,totalPages:totalPages,totalCourses:total}
 };
+
+export const findCourses = async ()=>{
+  return await Course.find();
+}
+
 export const insertIntoCourse = async (CourseData) => {
   return await Course.create(CourseData);
 };
@@ -41,9 +46,11 @@ export const findCourseById = async (CourseId) => {
   }
   });
 };
+
 export const updateCourseById = async (CourseId, updateData) => {
-  return await Course.findByIdAndUpdate(CourseId, updateData, { new: true });
+  return await Course.findByIdAndUpdate(CourseId, {$set:updateData}, { new: true });
 };
+
 export const deleteCourseById = async (CourseId) => {
   return await Course.findByIdAndDelete(CourseId);
 };

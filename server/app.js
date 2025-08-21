@@ -1,4 +1,5 @@
 import express from "express";
+import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
 import cors from 'cors';
 import dbConnect from "./src/config/db.config.js";
@@ -13,7 +14,7 @@ import whishlistRoutes from "./src/routes/whishlist.routes.js";
 import assigment from "./src/routes/assignment.routes.js";
 import videoRoutes from "./src/routes/media.routes.js";
 import progress from "./src/routes/progress.routes.js";
-import expressFileUpload from "express-fileupload";
+// import expressFileUpload from "express-fileupload";
 import categoryRoute from "./src/routes/category.routes.js";
 
 import { corsOptions } from "./src/config/cors.config.js";
@@ -21,8 +22,9 @@ const app = express();
 dotenv.config({ path: "../.env" });
 const PORT = process.env.PORT || 4000;
 
+app.use(fileUpload());
 app.use(express.json());
-app.use(expressFileUpload());
+// app.use(expressFileUpload());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));

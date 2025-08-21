@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import CourseCard from "../components/UI/cards/CourseCard";
-import { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCourses, fetchCategory } from "../api/courses";
 import { FaSearch } from "react-icons/fa";
+import {categories} from "../data/categoryData";
 import clsx from "clsx";
 function Courses() {
   const [selectedCat, setSelectedCat] = useState("all");
@@ -20,11 +20,11 @@ function Courses() {
     keepPreviousData: true,
     staleTime: 1000 * 60 * 5,
   });
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: fetchCategory,
-    staleTime: 1000 * 60 * 5,
-  });
+  // const { data: categories } = useQuery({
+  //   queryKey: ["categories"],
+  //   queryFn: fetchCategory,
+  //   staleTime: 1000 * 60 * 5,
+  // });
   const courses = courseData?.courses;
   const totalPages = courseData?.totalPages;
   const handleCategorySelection = (value) => {
@@ -46,7 +46,7 @@ function Courses() {
       if (selectedCat === "all") return courses;
       return courses.filter((course) => course?.category?.name === selectedCat);
     }
-  }, [categories, selectedCat, isLoading, search, page]);
+  }, [selectedCat, isLoading, search, page]);
 
   const getPageButtons = () => {
     const buttons = [];
@@ -102,17 +102,17 @@ function Courses() {
           </div>
           <div className="flex gap-x-10 mt-12 justify-center ">
             {!isLoading &&
-              categories.map((category) => (
+              categories.map((category,idx) => (
                 <button
                   className={clsx(
-                    category?.name === selectedCat
+                    category === selectedCat
                       ? "text-[var(--clr-accent-900)]"
                       : "text-[var(--clr-primary-200)]"
                   )}
-                  onClick={() => handleCategorySelection(category?.name)}
-                  key={category?._id}
+                  onClick={() => handleCategorySelection(category)}
+                  key={idx}
                 >
-                  {category?.name}
+                  {category}
                 </button>
               ))}
           </div>
@@ -123,7 +123,7 @@ function Courses() {
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-y-12">
             {!isLoading &&
-              filterCourses.map((course) => (
+              filterCourses?.map((course) => (
                 <CourseCard key={course._id} {...course} />
               ))}
           </div>
@@ -200,7 +200,6 @@ function Courses() {
           </div>
         </div>
       </section>
-      <Toaster position="bottom-left" />
     </>
   );
 }

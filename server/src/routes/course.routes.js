@@ -2,6 +2,7 @@ import express from "express";
 import moduleRoutes from "./module.routes.js";
 import {
   getAllCourses,
+  getCourses,
   createCourse,
   getCourse,
   updateCourse,
@@ -10,11 +11,11 @@ import {
 const router = express.Router();
 
 router.route("/")
-  .get(getAllCourses)
+  .get(getCourses)
   .post(createCourse);
 router.route("/:courseid")
   .get(getCourse)
-  .put(updateCourse)
+  .patch(updateCourse)
   .delete(deleteCourse);
 router.use("/:courseid/modules", moduleRoutes);
 export default router;

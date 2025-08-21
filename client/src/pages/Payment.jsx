@@ -99,7 +99,7 @@ const Payment =  ()=> {
                           onChange={(e) => setSelectedPayment(e.target.value)}
                           className="mr-3"
                         />
-                        <label htmlFor="card" className="flex items-center font-medium">
+                        <label htmlhtmlFor="card" className="flex items-center font-medium">
                           <i className="ri-bank-card-line mr-2 text-blue-600"></i>
                           Card
                         </label>
@@ -179,7 +179,7 @@ const Payment =  ()=> {
                               onChange={(e) => setSaveCard(e.target.checked)}
                               className="mr-2"
                             />
-                            <label htmlFor="saveCard" className="text-sm text-gray-700">
+                            <label htmlhtmlFor="saveCard" className="text-sm text-gray-700">
                               Securely save this card for my later purchase
                             </label>
                           </div>
@@ -199,7 +199,7 @@ const Payment =  ()=> {
                           onChange={(e) => setSelectedPayment(e.target.value)}
                           className="mr-3"
                         />
-                        <label htmlFor="upi" className="flex items-center font-medium">
+                        <label htmlhtmlFor="upi" className="flex items-center font-medium">
                           <img src="https://readdy.ai/api/search-image?query=UPI%20payment%20logo%20icon%20unified%20payments%20interface%20india&width=24&height=24&seq=upi&orientation=squarish" alt="UPI" className="w-6 h-6 mr-2" />
                           UPI
                         </label>
@@ -218,7 +218,7 @@ const Payment =  ()=> {
                           onChange={(e) => setSelectedPayment(e.target.value)}
                           className="mr-3"
                         />
-                        <label htmlFor="netbanking" className="flex items-center font-medium">
+                        <label htmlhtmlFor="netbanking" className="flex items-center font-medium">
                           <i className="ri-bank-line mr-2 text-blue-600"></i>
                           Net Banking
                         </label>
@@ -237,7 +237,7 @@ const Payment =  ()=> {
                           onChange={(e) => setSelectedPayment(e.target.value)}
                           className="mr-3"
                         />
-                        <label htmlFor="wallet" className="flex items-center font-medium">
+                        <label htmlhtmlFor="wallet" className="flex items-center font-medium">
                           <i className="ri-wallet-line mr-2 text-gray-600"></i>
                           Mobile Wallets
                         </label>

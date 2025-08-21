@@ -1,6 +1,7 @@
 import {
   insertIntoCourse,
   findAllCourses,
+  findCourses,
   findCourseById,
   updateCourseById,
   deleteCourseById,
@@ -18,12 +19,23 @@ export const getAllCourses = async (req, res) => {
   }
 };
 
+export const getCourses = async(req,res)=>{
+  try{
+    const courses = await findCourses();
+    res.status(200).json(courses);
+  } catch(err){
+    res.status(500).json({message: "internal errors"});
+  }
+}
+
 export const createCourse = async (req, res) => {
   try {
     const courseData = req.body;
+    console.log(courseData); 
     const newCourse = await insertIntoCourse(courseData);
     res.status(201).json(newCourse);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "internal error", error });
   }
 };
@@ -48,7 +60,7 @@ export const updateCourse = async (req, res) => {
     const updatedCourse = await updateCourseById(id, updateData);
     res.status(200).json(updatedCourse);
   } catch (error) {
-    res.status(500).json({ message: "internal error", error });
+    console.log(error);
   }
 };
 

@@ -14,7 +14,6 @@ const videoSchema = new Schema({
     url:{
         type:String,
         trim:true,
-        required:true,
     },
     duration:{
         type:Number,
@@ -23,14 +22,14 @@ const videoSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'Module',
     },
-    order:{
-        type:Number,
-        default:1,
-    },
     progress:{
         type:Number,
         default:0,
     },
+    preview:{
+        type:Boolean,
+        default:false,
+    }
 
 },{timestamps:true});
 

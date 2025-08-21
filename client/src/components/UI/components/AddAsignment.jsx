@@ -12,55 +12,55 @@ function AddAsignment({onClose}) {
                 };
     }, []);
   return (
-    <div class="bg-gray-900/30  backdrop-blur-xs fixed  inset-0 top-0 z-20  ">
-        <div id="assignment-form" class="bg-white max-w-5xl mx-auto mt-16 rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
-            <div class="px-6 py-4 border-b border-gray-200 bg-[var(--clr-accent-900)]">
-                <h3 class="text-lg font-medium text-white">Create New Assignment</h3>
+    <div className="bg-gray-900/30  backdrop-blur-xs fixed  inset-0 top-0 z-20  ">
+        <div id="assignment-form" className="bg-white max-w-5xl mx-auto mt-16 rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+            <div className="px-6 py-4 border-b border-gray-200 bg-[var(--clr-accent-900)]">
+                <h3 className="text-lg font-medium text-white">Create New Assignment</h3>
             </div>
-            <div class="p-6">
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="p-6">
+                <div className="space-y-6">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div>
-                            <label for="assignment-title" class="block text-sm font-medium text-gray-700 mb-1">Assignment Title</label>
-                            <input type="text" id="assignment-title" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Enter assignment title"/>
+                            <label htmlFor="assignment-title" className="block text-sm font-medium text-gray-700 mb-1">Assignment Title</label>
+                            <input type="text" id="assignment-title" className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Enter assignment title"/>
                         </div>
                         <div>
-                            <label for="assignment-module" class="block text-sm font-medium text-gray-700 mb-1">Module</label>
-                            <div class="relative">
-                                <select id="assignment-module" class="block w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm appearance-none">
+                            <label htmlFor="assignment-module" className="block text-sm font-medium text-gray-700 mb-1">Module</label>
+                            <div className="relative">
+                                <select id="assignment-module" className="block w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm appearance-none">
                                     <option value="1">Module 1: HTML Fundamentals</option>
                                     <option value="2">Module 2: CSS Styling</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <div class="w-5 h-5 flex items-center justify-center text-gray-400">
-                                        <i class="ri-arrow-down-s-line"></i>
+                                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <div className="w-5 h-5 flex items-center justify-center text-gray-400">
+                                        <i className="ri-arrow-down-s-line"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
                         <div>
-                            <label for="due-date" class="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
-                            <input type="date" id="due-date" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"/>
+                            <label htmlFor="due-date" className="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
+                            <input type="date" id="due-date" className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"/>
                         </div>
                         <div>
-                            <label for="points" class="block text-sm font-medium text-gray-700 mb-1">Points</label>
-                            <input type="number" id="points" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="100" min="1"/>
+                            <label htmlFor="points" className="block text-sm font-medium text-gray-700 mb-1">Points</label>
+                            <input type="number" id="points" className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="100" min="1"/>
                         </div>
                         <div>
-                            <label for="submission-type" class="block text-sm font-medium text-gray-700 mb-1">Submission Type</label>
-                            <div class="relative">
-                                <select id="submission-type" class="block w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm appearance-none">
+                            <label htmlFor="submission-type" className="block text-sm font-medium text-gray-700 mb-1">Submission Type</label>
+                            <div className="relative">
+                                <select id="submission-type" className="block w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm appearance-none">
                                     <option value="file">File Upload</option>
                                     <option value="text">Text Entry</option>
                                     <option value="url">Website URL</option>
                                     <option value="media">Media Recording</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <div class="w-5 h-5 flex items-center justify-center text-gray-400">
-                                        <i class="ri-arrow-down-s-line"></i>
+                                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <div className="w-5 h-5 flex items-center justify-center text-gray-400">
+                                        <i className="ri-arrow-down-s-line"></i>
                                     </div>
                                 </div>
                             </div>
@@ -68,35 +68,35 @@ function AddAsignment({onClose}) {
                     </div>
                     
                     <div>
-                        <label for="assignment-description" class="block text-sm font-medium text-gray-700 mb-1">Assignment Description</label>
-                        <textarea id="assignment-description" rows="5" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Enter detailed instructions for this assignment"></textarea>
+                        <label htmlFor="assignment-description" className="block text-sm font-medium text-gray-700 mb-1">Assignment Description</label>
+                        <textarea id="assignment-description" rows="5" className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Enter detailed instructions for this assignment"></textarea>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
-                        <div class="file-upload-container relative flex flex-col items-center justify-center h-32 rounded-lg">
-                            <input type="file" class="file-upload-input" multiple/>
-                            <div class="w-10 h-10 mb-2 flex items-center justify-center text-gray-400">
-                                <i class="ri-file-upload-line ri-lg"></i>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
+                        <div className="file-upload-container relative flex flex-col items-center justify-center h-32 rounded-lg">
+                            <input type="file" className="file-upload-input" multiple/>
+                            <div className="w-10 h-10 mb-2 flex items-center justify-center text-gray-400">
+                                <i className="ri-file-upload-line ri-lg"></i>
                             </div>
-                            <p class="text-sm font-medium text-gray-700">Upload assignment files</p>
-                            <p class="text-xs text-gray-500 mt-1">PDF, DOC, or other files up to 50MB</p>
+                            <p className="text-sm font-medium text-gray-700">Upload assignment files</p>
+                            <p className="text-xs text-gray-500 mt-1">PDF, DOC, or other files up to 50MB</p>
                         </div>
                     </div>
                     
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <label class="toggle-switch">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <label className="toggle-switch">
                                 <input type="checkbox"/>
-                                <span class="toggle-slider"></span>
+                                <span className="toggle-slider"></span>
                             </label>
-                            <span class="ml-3 text-sm font-medium text-gray-700">Allow late submissions</span>
+                            <span className="ml-3 text-sm font-medium text-gray-700">Allow late submissions</span>
                         </div>
-                        <div class="flex space-x-3">
-                            <button onClick={onClose} type="button" id="cancel-assignment-btn" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium !rounded-button bg-white text-gray-700 hover:bg-gray-50 focus:outline-none whitespace-nowrap">
+                        <div className="flex space-x-3">
+                            <button onClick={onClose} type="button" id="cancel-assignment-btn" className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium !rounded-button bg-white text-gray-700 hover:bg-gray-50 focus:outline-none whitespace-nowrap">
                                 Cancel
                             </button>
-                            <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium !rounded-button bg-[var(--clr-accent-900)] text-white hover:bg-[var(--clr-accent-1000)] focus:outline-none whitespace-nowrap">
+                            <button type="button" className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium !rounded-button bg-[var(--clr-accent-900)] text-white hover:bg-[var(--clr-accent-1000)] focus:outline-none whitespace-nowrap">
                                 Add Assignment
                             </button>
                         </div>

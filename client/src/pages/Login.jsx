@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {toast, Toaster } from 'react-hot-toast';
+import {toast } from 'react-hot-toast';
 import useAuthStore from '../store/authStore';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -17,11 +17,11 @@ function Login() {
     e.preventDefault();
     const {success,error} = await login({email,password});
     if(success){
-      const from = location?.state?.from || '/courses'
+      const from = location?.state?.from || '/dashboard'
       navigate(from, {replace:true});
-      toast.success('login success',{position: 'bottom-left'});
+      toast.success('login success',{position: 'top-center'});
     } else {
-      toast.error(error,{ position:"bottom-left" });
+      toast.error(error,{ position:"top-center" });
     }
   }
   return (
@@ -69,7 +69,6 @@ function Login() {
           </div>
         </div>
       </section>
-      <Toaster/>
     </>
   )
 }

@@ -19,6 +19,18 @@ const moduleSchema = new Schema(
         ref: "Video",
       },
     ],
+    quiz: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Quiz",
+      },
+    ],
+    assignment: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Assignment",
+      },
+    ],
     order: {
       type: Number,
       default: 1,

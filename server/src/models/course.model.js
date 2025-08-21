@@ -1,96 +1,47 @@
 // Importing Schema and model from mongoose to define the schema for the Course model
-import { Schema, model } from "mongoose";
+import { Schema, model, } from "mongoose";
 
-//Defining the schema structure for the particularly Course
-
-const lectureSchema = new Schema({
-  title: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: true,
-  },
-  videoUrl: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  public_id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  freePreview: Boolean,
-});
 
 // Defining the schema structure for the Course collection
-const courseSchema = new Schema(
-  {
-    // Title of the course - must be a unique, non-empty, trimmed string
-    title: {
-      type: String,
-      trim: true,
-      required: true,
-      unique: true,
-    },
-    //Image for the course- non-empty,trimmed String
-    image: {
-      type: String,
-      required: true,
-      trim: true,
-    },
 
-    // Optional subtitle for the course - trimmed string
-    subtitle: {
-      type: String,
-      trim: true,
-    },
-    // Optional description of the course - trimmed string
-    description: {
-      type: String,
-      trim: true,
-    },
-    // Reference to the instructor of the course - required ObjectId pointing to Instructor model
-    instructor: {
-      type: Schema.Types.ObjectId,
-      ref: "Instructor",
-      required: true,
-    },
-    // Array of ObjectIds referencing Module documents related to this course
-    module: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Module",
-      },
-    ],
-    // Tags associated with the course - defaults to an empty array
-    tag: {
-      type: [String],
-      default: [],
-    },
-    // Course category - required, trimmed string
-    category: {
-      type: Schema.Types.ObjectId,
-      ref:"Category"
-    },
-    // Language in which the course is offered - required string
-    language: {
-      type: String,
-      required: true,
-    },
-    // Progress of the course (e.g., completion %) - defaults to 0
-    progress: {
-      type: Number,
-      default: 0,
-    },
-    princing: Number,
-    objective: String,
-    curriculam: [lectureSchema],
-    isPublished: Boolean,
+const courseSchema = new Schema({
+  courseInfo: {
+    title:{type: String},
+    description: {type : String},
+    category: {type: String},
+    skillLevel: { type: String, enum: ['beginner', 'intermediate', 'advanced'], default: 'beginner' },
+    instructor: { type: Schema.Types.ObjectId, ref: 'Instructor' },
   },
-  // Automatically adds createdAt and updatedAt timestamps to the document
-  { timestamps: true }
-);
+  modules: [{ type: Schema.Types.ObjectId, ref: 'Module'},],
+  pricing: {
+    price: Number,
+    currency: { type: String, default: 'INR' },
+    discount:[{dtype:{type:String},amount:{type:Number},valadity:{type:Date}}],
+    isFree: { type: Boolean, default: false },
+    saleEndsAt: Date
+  },
+  lifecycle: {
+    visibility: { type: String, enum: ['private','public','unlisted'], default: 'public' },
+    status: { type: String, enum: ['draft', 'published'], default: 'draft' },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+  },
+  metadata: {
+     metaDesc:String,
+     keyword:[String],
+     slug:String,
+     thumbnailUrl:String,
+     previewVideoUrl:String
+  },
+  metrics: {
+    enrollments: { type: Number, default: 0 },
+    avgRating: { type: Number, default: 0 },
+    ratingCount: { type: Number, default: 0 },
+    totalVideos: { type: Number, default: 0 },
+    totalQuizzes: { type: Number, default: 0 },
+    readTimeMinutes: { type: Number, default: 0 },
+  }
+});
 
 /*For Now I am commenting it 
 // Middleware to clean up related modules and videos before deleting a course
@@ -121,3 +72,7 @@ const Course = model("Course", courseSchema);
 
 // Exporting the Course model for use in other parts of the application
 export default Course;
+
+
+
+
