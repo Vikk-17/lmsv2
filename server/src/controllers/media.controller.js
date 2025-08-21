@@ -1,6 +1,5 @@
 // media.controller.js
-import { v2 as cloudinary } from "cloudinary";
-import dotenv from "dotenv";
+import cloudinary from "../config/cloudinary.config.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -8,46 +7,149 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load env variables
-dotenv.config({
-  path: path.resolve(__dirname, "../.env"),
-});
-
-// Cloudinary config
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 
 // Upload media controller
+// export const uploadMedia = async (req, res) => {
+//   try {
+//     const files = req.files?.video;
+//     console.log(files);
+//     if (!files || files.lenght === 0) {
+//       return res.status(400).json({ error: "No file uploaded" });
+//     }
+
+//     const filesArray = Array.isArray(files) ? files : [files];
+
+//     const uploadPromises = filesArray.map((file)=>{
+//       const base64String = `data:${file.mimetype};base64,${file.data.toString(
+//       "base64"
+//       )}`;
+
+//       return cloudinary.uploader.upload(base64String, {
+//         resource_type: "video",
+//         folder: "videos", 
+//       });
+//     });
+
+//     const results = await Promise.all(uploadPromises);
+
+//     res.status(200).json({
+//       message: "Media uploaded successfully",
+//       uploads: results.map((r)=>({
+//         url: r.secure_url,
+//         public_id:r.public_id,
+//         duration:r.duration,
+//       }))
+//     });
+//   } catch (err) {
+//     console.error("Cloudinary Upload Error:", err);
+//     res.status(500).json({ error: "Upload failed" });
+//   }
+// };
+
 export const uploadMedia = async (req, res) => {
   try {
-    const file = req.files?.file;
+    const file = req.files?.video; // single file expected
 
     if (!file) {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Convert buffer to base64 string
     const base64String = `data:${file.mimetype};base64,${file.data.toString(
       "base64"
     )}`;
 
+    // Upload single file to Cloudinary
     const result = await cloudinary.uploader.upload(base64String, {
-      resource_type: "auto",
+      resource_type: "video",
+      folder: "videos",
     });
 
     res.status(200).json({
-      message: "Media uploaded successfully",
-      url: result.secure_url,
-      public_id: result.public_id,
+      message: "Video uploaded successfully",
+      upload: {
+        url: result.secure_url,
+        public_id: result.public_id,
+        duration: result.duration,
+      },
     });
   } catch (err) {
     console.error("Cloudinary Upload Error:", err);
     res.status(500).json({ error: "Upload failed" });
   }
 };
+
+
+export const uploadImage = async (req, res) => {
+  try {
+    const file = req.files?.image; // single file expected
+
+    if (!file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const base64String = `data:${file.mimetype};base64,${file.data.toString(
+      "base64"
+    )}`;
+
+    // Upload single file to Cloudinary
+    const result = await cloudinary.uploader.upload(base64String, {
+      resource_type: "image",
+      folder: "images",
+    });
+
+    res.status(200).json({
+      message: "Video uploaded successfully",
+      upload: {
+        url: result.secure_url,
+        public_id: result.public_id,
+        duration: result.duration,
+      },
+    });
+  } catch (err) {
+    console.error("Cloudinary Upload Error:", err);
+    res.status(500).json({ error: "Upload failed" });
+  }
+};
+
+
+export const uploadAssignment = async (req, res) => {
+  try {
+    const files = req.files.videos;
+    if (!files || files.lenght === 0) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const filesArray = Array.isArray(files) ? files : [files];
+
+    const uploadPromises = filesArray.map((file)=>{
+      const base64String = `data:${file.mimetype};base64,${file.data.toString(
+      "base64"
+      )}`;
+
+      return cloudinary.uploader.upload(base64String, {
+        resource_type: "auto",
+        folder: "assignment", 
+      });
+    })
+
+    const results = await Promise.all(uploadPromises);
+
+    res.status(200).json({
+      message: "Media uploaded successfully",
+      uploads: results.map((r)=>({
+        url: r.secure_url,
+        public_id:r.public_id,
+      }))
+    });
+  } catch (err) {
+    console.error("Cloudinary Upload Error:", err);
+    res.status(500).json({ error: "Upload failed" });
+  }
+};
+
+
+
+
 
 // Delete media controller
 export const deleteMedia = async (req, res) => {

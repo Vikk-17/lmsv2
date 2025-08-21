@@ -1,8 +1,9 @@
 // media.routes.js
 import express from "express";
-import multer from "multer";
+
 import {
   uploadMedia,
+  uploadImage,
   deleteMedia,
   getMediaByPublicId,
   getVideoUrlByPublicId,
@@ -12,6 +13,7 @@ const router = express.Router();
 
 // Route to upload media
 router.post("/upload", uploadMedia);
+router.post("/upload/image", uploadImage);
 
 // Route to delete media
 router.delete("/delete/:publicId", deleteMedia);

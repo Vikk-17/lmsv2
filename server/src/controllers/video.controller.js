@@ -19,6 +19,7 @@ import {
 export const createVideoToModule = async (req,res)=>{
     try{
         const videoData = req.body;
+        console.log(videoData);
         const moduleId = req.params.moduleid;
         const newVideo = await insertVideoIntoModule({...videoData,module:moduleId});
         res.status(200).json(newVideo);
