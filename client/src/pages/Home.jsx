@@ -5,7 +5,6 @@ import CourseCard from "../components/UI/cards/CourseCard";
 import AnalyticsCard from "../components/UI/cards/AnalyticsCard";
 import { useEffect, useState } from "react";
 
-
 const testimonials = [
   {
     quote:
@@ -30,9 +29,7 @@ const testimonials = [
   },
 ];
 
-
 function Home() {
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // useEffect to handle the automatic sliding
@@ -52,7 +49,7 @@ function Home() {
     <>
       <section
         id="hero-section"
-        className="bg-[var(--clr-primary-800)] pt-20 pb-32"
+        className="bg-[var(--clr-primary-800)] pt-40 pb-32"
       >
         <div className="sec-wrap">
           <div className="relative lg:flex lg:items-center gap-10">
@@ -199,76 +196,76 @@ function Home() {
       </section>
 
       <section id="testimonial" className="my-14 md:my-22">
-      <div className="bg-[var(--clr-accent-100)] py-10 sm:py-16">
-        <div className="sec-wrap">
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 text-[var(--clr-primary-900)]">
-            {/* Left Section */}
-            <div className="flex flex-1 flex-col">
-              <h2>What Our Learners Say</h2>
-              <p className="mt-2">
-                Honest feedback, real success stories, and trusted learning
-                experiences.
-              </p>
-            </div>
+        <div className="bg-[var(--clr-accent-100)] py-10 sm:py-16">
+          <div className="sec-wrap">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 text-[var(--clr-primary-900)]">
+              {/* Left Section */}
+              <div className="flex flex-1 flex-col">
+                <h2>What Our Learners Say</h2>
+                <p className="mt-2">
+                  Honest feedback, real success stories, and trusted learning
+                  experiences.
+                </p>
+              </div>
 
-            {/* Right Section (Carousel) */}
-            <div className="flex flex-1 flex-col">
-              <div className="overflow-hidden">
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{
-                    transform: `translateX(-${currentIndex * 100}%)`,
-                  }}
-                >
-                  {testimonials.map((testimonial, index) => (
-                    <div key={index} className="flex-shrink-0 w-full">
-                      <p>
-                        <q>{testimonial.quote}</q>
-                      </p>
-                      <div className="flex justify-between mt-6 items-center">
-                        {/* Profile Info */}
-                        <div className="flex items-center gap-3">
-                          <div className="h-12 w-12 overflow-hidden rounded-full">
-                            <img
-                              src={testimonial.image}
-                              alt={testimonial.name}
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
-                          <div>
-                            <p className="m-0">{testimonial.name}</p>
-                            <p className="m-0 text-[var(--clr-primary-400)] text-tag">
-                              {testimonial.role}
-                            </p>
+              {/* Right Section (Carousel) */}
+              <div className="flex flex-1 flex-col">
+                <div className="overflow-hidden">
+                  <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{
+                      transform: `translateX(-${currentIndex * 100}%)`,
+                    }}
+                  >
+                    {testimonials.map((testimonial, index) => (
+                      <div key={index} className="flex-shrink-0 w-full">
+                        <p>
+                          <q>{testimonial.quote}</q>
+                        </p>
+                        <div className="flex justify-between mt-6 items-center">
+                          {/* Profile Info */}
+                          <div className="flex items-center gap-3">
+                            <div className="h-12 w-12 overflow-hidden rounded-full">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+                            <div>
+                              <p className="m-0">{testimonial.name}</p>
+                              <p className="m-0 text-[var(--clr-primary-400)] text-tag">
+                                {testimonial.role}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between mt-6 items-center">
-                {/* Dots */}
-                <ul className="flex gap-x-2">
-                  {testimonials.map((_, index) => (
-                    <li key={index}>
-                      <button
-                        onClick={() => handleDotClick(index)}
-                        className={`rounded-full transition-all duration-300 ${
-                          index === currentIndex
-                            ? "h-4.5 w-4.5 bg-[var(--clr-accent-900)]"
-                            : "h-4 w-4 bg-[var(--clr-accent-400)]"
-                        }`}
-                      ></button>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex justify-between mt-6 items-center">
+                  {/* Dots */}
+                  <ul className="flex gap-x-2">
+                    {testimonials.map((_, index) => (
+                      <li key={index}>
+                        <button
+                          onClick={() => handleDotClick(index)}
+                          className={`rounded-full transition-all duration-300 ${
+                            index === currentIndex
+                              ? "h-4.5 w-4.5 bg-[var(--clr-accent-900)]"
+                              : "h-4 w-4 bg-[var(--clr-accent-400)]"
+                          }`}
+                        ></button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 }

@@ -30,7 +30,8 @@
   "dependencies": {
     "cloudinary": "^2.6.1",
     "express": "^5.1.0",
-    "multer": "^2.0.0"
+    "multer": "^2.0.0",
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"

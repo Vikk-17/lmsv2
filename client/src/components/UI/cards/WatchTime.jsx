@@ -8,8 +8,7 @@ import {
   Tooltip,
   Title,
 } from "chart.js";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import { ChevronLeft, ChevronRight, ChevronDown  } from "lucide-react";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Title);
 
@@ -93,43 +92,54 @@ export default function WatchTime() {
   };
 
   return (
-    <div className="w-full max-w-md text-black mx-auto py-4 px-6 bg-white space-y-4">
-      <div className="flex justify-between items-center border-b py-2 mb-6  border-gray-200 ">
-        <span className="flex-2/3 font-medium">Weekly Watch Time</span>
-        <select
-        className="w-full text-sm  flex-1/3 p-1.5 border border-gray-300 outline-none rounded-md"
-        value={`${selected.month}-${selected.year}`}
-        onChange={handleSelectChange}
-        >
-        {years.flatMap((year) =>
-            months.map((m) => (
-            <option key={`${m.month}-${year}`} value={`${m.month}-${year}`}>
-                {m.label} {year}
-            </option>
-            ))
-        )}
-        </select>
+    <div className="w-full max-w-xs text-black bg-white space-y-5">
+      <div className="flex justify-between items-center pb-3 border-b border-gray-200 ">
+        <span className="text-md font-bold">Weekly Watch Time</span>
+        <div className="relative w-2/5">
+          <select
+            className="w-full text-sm p-1.5 border border-gray-300 outline-none rounded-md appearance-none"
+            value={`${selected.month}-${selected.year}`}
+            onChange={handleSelectChange}
+          >
+            {years.flatMap((year) =>
+              months.map((m) => (
+                <option key={`${m.month}-${year}`} value={`${m.month}-${year}`}>
+                  {m.label} {year}
+                </option>
+              ))
+            )}
+          </select>
+
+          {/* Lucide React icon as arrow */}
+          <ChevronDown
+            size={16}
+            className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"
+          />
+        </div>
       </div>
 
       <div className="flex justify-between items-center">
         <button
           onClick={() => setWeek((w) => Math.max(1, w - 1))}
           disabled={week === 1}
-          className="inline-flex w-8 h-8 rounded-full bg-[var(--clr-accent-900)] items-center justify-center disabled:bg-blue-300"
+          className="inline-flex w-8 h-8 rounded-full bg-[var(--clr-accent-900)] items-center justify-center disabled:bg-[var(--clr-primary-900)]/40"
         >
-            <ChevronLeft className="w-5 h-5 text-white" />
+          <ChevronLeft className="w-5 h-5 text-white" />
         </button>
 
-        <span className="text-sm font-semibold text-gray-700">{week}/5 weeks</span>
+        <span className="text-md font-bold text-gray-700">
+          {week}/5 weeks
+        </span>
 
         <button
           onClick={() => setWeek((w) => Math.min(totalWeeks, w + 1))}
           disabled={week === totalWeeks}
-          className="inline-flex w-8 h-8 rounded-full bg-[var(--clr-accent-900)] items-center justify-center disabled:bg-blue-300"
+          className="inline-flex w-8 h-8 rounded-full bg-[var(--clr-accent-900)] items-center justify-center disabled:bg-[var(--clr-primary-900)]/40"
         >
-            <ChevronRight className="w-5 h-5 text-white" />
+          <ChevronRight className="w-5 h-5 text-white" />
         </button>
       </div>
+
       <Bar data={chartData} options={chartOptions} />
     </div>
   );

@@ -1,41 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
-function WatchingCourse() {
+
+const WatchingCourse = ({ course }) => {
   return (
-    <div className='bg-[var(--clr-accent-200)] rounded-xl px-6 py-4 shadow '>
-        <div className='flex gap-x-4'>
-            <div className='h-16 w-16 rounded-xl overflow-hidden'>
-                <img className='h-full w-full object-fit' src="./images/img1.jpg" alt="" />
-            </div>
-            <div className=''>
-                <h6>Advance UI/UX Design</h6>
-                <span className='text-gray-500'>Design</span>
-            </div>
+    <div className="w-[350px] flex-shrink-0 bg-[var(--clr-accent-200)] rounded-xl p-5">
+      {/* Image + Title */}
+      <div className="flex gap-x-4">
+        <div className="h-16 w-16 rounded-xl overflow-hidden">
+          <img
+            className="h-full w-full object-cover"
+            src="./images/img1.jpg"
+            alt="course_img"
+          />
         </div>
-        <div className='w-full h-4 bg-[var(--clr-accent-400)] rounded-xl mt-6 mb-2'>
-            <div className='w-[60%] h-4 bg-blue-500 rounded-xl'></div>
+        <div className="flex flex-col gap-1.5">
+          <h6>{course.title}</h6>
+          <span className="text-md font-bold text-gray-500 uppercase">
+            {course.category}
+          </span>
         </div>
-        <div className='flex justify-between '>
-            <span className='inline-flex items-center gap-x-1 text-gray-500'>
-                <svg className=" w-6 h-6 ">
-                    <use href="./icons/mcource.svg#cr3"></use>
-                </svg>
-                18/40 Lessons
-            </span>
-            <span className='inline-flex items-center gap-x-1 text-gray-500'>
-                <svg className=" w-6 h-6 ">
-                    <use href="./icons/mcource.svg#cr4"></use>
-                </svg>
-                6 hours left
-            </span>
+      </div>
+
+      {/* Progress */}
+      <div className="flex flex-col gap-2.5 mt-5 mb-6">
+        <div className="w-full h-4 bg-[var(--clr-accent-400)] rounded-xl">
+          <div
+            className="h-4 bg-gradient-to-r from-[#8D9BF2] to-[#455CE9] rounded-xl"
+            style={{ width: `${course.progress}%` }}
+          ></div>
         </div>
-        <Link to='#' className='mt-4 inline-flex text-[var(--clr-accent-900)] font-medium items-center gap-x-2'>
+        <div className="flex justify-between text-sm text-gray-500">
+          <span className="inline-flex items-center gap-x-1">
+            <svg className="w-5 h-5">
+              <use href="./icons/mcource.svg#cr3"></use>
+            </svg>
+            {course.lessons}
+          </span>
+          <span className="inline-flex items-center gap-x-1">
+            <svg className="w-5 h-5">
+              <use href="./icons/mcource.svg#cr4"></use>
+            </svg>
+            {course.hoursLeft}
+          </span>
+        </div>
+      </div>
+
+      {/* Resume Button */}
+      <Link
+        to="#"
+        className="inline-flex text-[var(--clr-accent-900)] font-bold items-center gap-x-2"
+      >
         Resume Course
         <FaRegArrowAltCircleRight />
-        </Link>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default WatchingCourse
+export default WatchingCourse;
