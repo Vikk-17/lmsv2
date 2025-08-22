@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 // Custom arrows
 const PrevArrow = ({ onClick }) => (
   <button
-    className="p-2 ml-2 rounded-full bg-gray-200 hover:bg-gray-300"
+    className="p-2 ml-2 rounded-full bg-[var(--clr-accent-900)] hover:bg-[var(--clr-primary-900)]"
     onClick={onClick}
   >
     <FaArrowLeft />
@@ -18,7 +18,7 @@ const PrevArrow = ({ onClick }) => (
 
 const NextArrow = ({ onClick }) => (
   <button
-    className="p-2 ml-2 rounded-full bg-gray-200 hover:bg-gray-300"
+    className="p-2 ml-2 rounded-full bg-[var(--clr-accent-900)] hover:bg-[var(--clr-primary-900)]"
     onClick={onClick}
   >
     <FaArrowRight />

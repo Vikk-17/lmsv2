@@ -335,4 +335,30 @@
   animation: slide-in 0.3s ease-out;
 }
 
+.custom-section {
+  padding: 2rem; /* Tailwind's p-8 */
+  background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
+}
+
+/* Remove bg and px between 1024px and 1200px */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .custom-section {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+  }
+}
+
+/* Remove bg and px below 600px */
+@media (max-width: 768px) {
+  .custom-section {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+  }
+}
+
+
+
+
 
