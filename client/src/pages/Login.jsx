@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     const {success,error} = await login({email,password});
     if(success){
-      const from = location?.state?.from || '/dashboard'
+      const from = location?.state?.from || '/courses'
       navigate(from, {replace:true});
       toast.success('login success',{position: 'top-center'});
     } else {
