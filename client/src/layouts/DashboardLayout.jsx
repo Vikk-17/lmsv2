@@ -12,7 +12,7 @@ function DashboardLayout() {
       <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
       <div className="flex-1 transition-all duration-300 overflow-hidden sm:ml-20">
         <Dashnav setSidebarOpen={setSidebarOpen}  />
-        <main className="py-10 overflow-y-auto sec-wrap">
+        <main className="py-10 overflow-y-auto sec-wrap bg-[#f8f8ff]">
           <Outlet />
         </main>
       </div>
